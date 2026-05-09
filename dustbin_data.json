@@ -1,0 +1,312 @@
+[
+  {
+    "id": 1,
+    "name": "Dustbin near KR Circle",
+    "latitude": 12.305443,
+    "longitude": 76.654743,
+    "address": "Near KR Circle, Mysuru",
+    "accepted_waste_types": ["dry", "wet"],
+    "bin_colors": ["blue", "green"],
+    "facilities": ["segregated bins", "city center location"]
+  },
+  {
+    "id": 2,
+    "name": "Dustbin near KR Circle",
+    "latitude": 12.3035,
+    "longitude": 76.656984,
+    "address": "KR Circle Area, Mysuru", 
+    "accepted_waste_types": ["dry", "wet"],
+    "bin_colors": ["blue", "green"],
+    "facilities": ["public access", "central location"]
+  },
+  {
+    "id": 3,
+    "name": "Dustbin near Devaraja Market",
+    "latitude": 12.307318,
+    "longitude": 76.653684,
+    "address": "Near Devaraja Market, Mysuru",
+    "accepted_waste_types": ["dry", "wet"],
+    "bin_colors": ["blue", "green"],
+    "facilities": ["market waste collection", "high capacity"]
+  },
+  {
+    "id": 4,
+    "name": "Dustbin near Devaraja Market",
+    "latitude": 12.30761,
+    "longitude": 76.654162,
+    "address": "Devaraja Market Area, Mysuru",
+    "accepted_waste_types": ["wet", "dry"],
+    "bin_colors": ["green", "blue"],
+    "facilities": ["organic waste processing", "recyclables"]
+  },
+  {
+    "id": 5,
+    "name": "Dustbin near Lakshmipuram",
+    "latitude": 12.302421,
+    "longitude": 76.660829,
+    "address": "Lakshmipuram, Mysuru",
+    "accepted_waste_types": ["dry", "wet"],
+    "bin_colors": ["blue", "green"],
+    "facilities": ["residential area", "regular pickup"]
+  },
+  {
+    "id": 6,
+    "name": "Dustbin near Lakshmipuram",
+    "latitude": 12.304647,
+    "longitude": 76.662097,
+    "address": "Lakshmipuram Central, Mysuru",
+    "accepted_waste_types": ["dry", "wet"],
+    "bin_colors": ["blue", "green"],
+    "facilities": ["community bins", "segregated collection"]
+  },
+  {
+    "id": 7,
+    "name": "Dustbin near Lakshmipuram",
+    "latitude": 12.305281,
+    "longitude": 76.662618,
+    "address": "East Lakshmipuram, Mysuru",
+    "accepted_waste_types": ["dry", "wet"],
+    "bin_colors": ["blue", "green"],
+    "facilities": ["neighborhood access", "daily collection"]
+  },
+  {
+    "id": 8,
+    "name": "Dustbin near Lakshmipuram",
+    "latitude": 12.303614,
+    "longitude": 76.663173,
+    "address": "North Lakshmipuram, Mysuru",
+    "accepted_waste_types": ["dry", "wet"],
+    "bin_colors": ["blue", "green"],
+    "facilities": ["residential collection", "covered bins"]
+  },
+  {
+    "id": 9,
+    "name": "Dustbin near Jayanagar",
+    "latitude": 12.295237,
+    "longitude": 76.65932,
+    "address": "Jayanagar Main Road, Mysuru",
+    "accepted_waste_types": ["dry", "wet"],
+    "bin_colors": ["blue", "green"],
+    "facilities": ["main road access", "high visibility"]
+  },
+  {
+    "id": 10,
+    "name": "Dustbin near Jayanagar",
+    "latitude": 12.295257,
+    "longitude": 76.659252,
+    "address": "Jayanagar Area, Mysuru",
+    "accepted_waste_types": ["dry", "wet"],
+    "bin_colors": ["blue", "green"],
+    "facilities": ["community access", "regular maintenance"]
+  },
+  {
+    "id": 11,
+    "name": "Dustbin near Mysore Zoo",
+    "latitude": 12.300607,
+    "longitude": 76.665328,
+    "address": "Near Mysore Zoo, Mysuru",
+    "accepted_waste_types": ["dry", "wet"],
+    "bin_colors": ["blue", "green"],
+    "facilities": ["tourist area", "high capacity", "frequent cleaning"]
+  },
+  {
+    "id": 12,
+    "name": "Dustbin near Nazarbad",
+    "latitude": 12.300536,
+    "longitude": 76.665227,
+    "address": "Nazarbad, Mysuru",
+    "accepted_waste_types": ["dry", "wet"],
+    "bin_colors": ["blue", "green"],
+    "facilities": ["residential area", "covered bins"]
+  },
+  {
+    "id": 13,
+    "name": "Dustbin near Nazarbad",
+    "latitude": 12.302451,
+    "longitude": 76.665737,
+    "address": "Nazarbad Central, Mysuru",
+    "accepted_waste_types": ["dry", "wet"],
+    "bin_colors": ["blue", "green"],
+    "facilities": ["central location", "easy access"]
+  },
+  {
+    "id": 14,
+    "name": "Dustbin near Railway Station",
+    "latitude": 12.313675,
+    "longitude": 76.645917,
+    "address": "Mysuru Railway Station",
+    "accepted_waste_types": ["dry", "wet"],
+    "bin_colors": ["blue", "green"],
+    "facilities": ["transport hub", "high capacity", "24/7 access"]
+  },
+  {
+    "id": 15,
+    "name": "Dustbin near Railway Station",
+    "latitude": 12.313667,
+    "longitude": 76.645973,
+    "address": "Railway Station Platform, Mysuru",
+    "accepted_waste_types": ["dry"],
+    "bin_colors": ["blue"],
+    "facilities": ["platform access", "quick disposal"]
+  },
+  {
+    "id": 16,
+    "name": "Dustbin near Saraswathipuram",
+    "latitude": 12.30182,
+    "longitude": 76.641424,
+    "address": "Saraswathipuram, Mysuru",
+    "accepted_waste_types": ["dry", "wet"],
+    "bin_colors": ["blue", "green"],
+    "facilities": ["residential collection", "weekly pickup"]
+  },
+  {
+    "id": 17,
+    "name": "Dustbin near Kuvempunagar",
+    "latitude": 12.275096,
+    "longitude": 76.643297,
+    "address": "Kuvempunagar, Mysuru",
+    "accepted_waste_types": ["dry", "wet"],
+    "bin_colors": ["blue", "green"],
+    "facilities": ["suburban area", "community bins"]
+  },
+  {
+    "id": 18,
+    "name": "Dustbin near Vontikoppal",
+    "latitude": 12.32743,
+    "longitude": 76.631268,
+    "address": "Vontikoppal, Mysuru",
+    "accepted_waste_types": ["dry", "wet"],
+    "bin_colors": ["blue", "green"],
+    "facilities": ["residential area", "regular collection"]
+  },
+  {
+    "id": 19,
+    "name": "Dustbin near Manasagangothri",
+    "latitude": 12.315305,
+    "longitude": 76.62234,
+    "address": "University of Mysore, Manasagangothri",
+    "accepted_waste_types": ["dry", "wet"],
+    "bin_colors": ["blue", "green"],
+    "facilities": ["university campus", "educational area"]
+  },
+  {
+    "id": 20,
+    "name": "Dustbin near Chamundi Hill",
+    "latitude": 12.273873,
+    "longitude": 76.670712,
+    "address": "Chamundi Hill Entrance, Mysuru",
+    "accepted_waste_types": ["dry", "wet"],
+    "bin_colors": ["blue", "green"],
+    "facilities": ["tourist spot", "hill station access"]
+  },
+  {
+    "id": 21,
+    "name": "Dustbin near Gokulam",
+    "latitude": 12.330838,
+    "longitude": 76.629327,
+    "address": "Gokulam, Mysuru",
+    "accepted_waste_types": ["dry", "wet"],
+    "bin_colors": ["blue", "green"],
+    "facilities": ["residential layout", "modern amenities"]
+  },
+  {
+    "id": 22,
+    "name": "Dustbin near Ramakrishna Nagar",
+    "latitude": 12.28129,
+    "longitude": 76.620483,
+    "address": "Ramakrishna Nagar, Mysuru",
+    "accepted_waste_types": ["dry", "wet"],
+    "bin_colors": ["blue", "green"],
+    "facilities": ["residential area", "community collection"]
+  },
+  {
+    "id": 23,
+    "name": "Dustbin near Lalitha Mahal",
+    "latitude": 12.279196,
+    "longitude": 76.689449,
+    "address": "Near Lalitha Mahal, Mysuru",
+    "accepted_waste_types": ["dry", "wet"],
+    "bin_colors": ["blue", "green"],
+    "facilities": ["heritage area", "tourist location"]
+  },
+  {
+    "id": 24,
+    "name": "Dustbin near Brindavan Extension",
+    "latitude": 12.341386,
+    "longitude": 76.626853,
+    "address": "Brindavan Extension, Mysuru",
+    "accepted_waste_types": ["dry", "wet"],
+    "bin_colors": ["blue", "green"],
+    "facilities": ["extension area", "modern layout"]
+  },
+  {
+    "id": 25,
+    "name": "Dustbin near Infosys Campus",
+    "latitude": 12.257447,
+    "longitude": 76.654516,
+    "address": "Near Infosys Campus, Mysuru",
+    "accepted_waste_types": ["dry", "wet"],
+    "bin_colors": ["blue", "green"],
+    "facilities": ["IT campus", "corporate area"]
+  },
+  {
+    "id": 26,
+    "name": "Dustbin near Alanahalli",
+    "latitude": 12.264384,
+    "longitude": 76.686222,
+    "address": "Alanahalli, Mysuru",
+    "accepted_waste_types": ["dry", "wet"],
+    "bin_colors": ["blue", "green"],
+    "facilities": ["residential area", "local collection"]
+  },
+  {
+    "id": 27,
+    "name": "Dustbin near Metagalli",
+    "latitude": 12.351613,
+    "longitude": 76.628753,
+    "address": "Metagalli, Mysuru",
+    "accepted_waste_types": ["dry", "wet"],
+    "bin_colors": ["blue", "green"],
+    "facilities": ["industrial area", "large capacity"]
+  },
+  {
+    "id": 28,
+    "name": "Dustbin near Hebbal",
+    "latitude": 12.353687,
+    "longitude": 76.621863,
+    "address": "Hebbal, Mysuru",
+    "accepted_waste_types": ["dry", "wet"],
+    "bin_colors": ["blue", "green"],
+    "facilities": ["suburban area", "regular service"]
+  },
+  {
+    "id": 29,
+    "name": "Dustbin near Bogadi",
+    "latitude": 12.28977,
+    "longitude": 76.591344,
+    "address": "Bogadi, Mysuru",
+    "accepted_waste_types": ["dry", "wet"],
+    "bin_colors": ["blue", "green"],
+    "facilities": ["residential area", "community bins"]
+  },
+  {
+    "id": 30,
+    "name": "Dustbin near Vijayanagar",
+    "latitude": 12.328719,
+    "longitude": 76.591136,
+    "address": "Vijayanagar, Mysuru",
+    "accepted_waste_types": ["dry", "wet"],
+    "bin_colors": ["blue", "green"],
+    "facilities": ["residential layout", "planned area"]
+  },
+  {
+    "id": 31,
+    "name": "Dustbin near ATME",
+    "latitude": 12.3018,
+    "longitude":  76.6414,
+    "address": "Near ATME college, Mysuru",
+    "accepted_waste_types": ["dry", "wet"],
+    "bin_colors": ["blue", "green"],
+    "facilities": ["segregated bins", "college location"]
+  }
+]

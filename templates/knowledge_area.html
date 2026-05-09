@@ -1,0 +1,542 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Knowledge Center - Waste Management</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #1a2f1a, #2d5a2d, #3a7c3a);
+            color: #fff;
+            min-height: 100vh;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        .background-animation {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            overflow: hidden;
+        }
+
+        .bubble {
+            position: absolute;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.1);
+            animation: float 15s infinite ease-in-out;
+        }
+
+        .leaf {
+            position: absolute;
+            font-size: 24px;
+            color: rgba(139, 195, 74, 0.5);
+            animation: fall 20s infinite linear;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(180deg); }
+        }
+
+        @keyframes fall {
+            0% { transform: translateY(-100px) rotate(0deg); }
+            100% { transform: translateY(100vh) rotate(360deg); }
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
+            animation: fadeIn 1s ease;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+
+        .logo i {
+            font-size: 2.5rem;
+            margin-right: 10px;
+            color: #8bc34a;
+        }
+
+        .logo h1 {
+            font-size: 2rem;
+            background: linear-gradient(to right, #8bc34a, #4caf50, #2e7d32);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .back-btn {
+            padding: 10px 20px;
+            background: rgba(255, 255, 255, 0.15);
+            border: none;
+            border-radius: 50px;
+            color: white;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 600;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .back-btn:hover {
+            background: rgba(255, 255, 255, 0.25);
+            transform: translateY(-2px);
+        }
+
+        .page-header {
+            text-align: center;
+            padding: 40px 0;
+            animation: slideUp 1s ease;
+        }
+
+        .page-header h2 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            text-shadow: 0 0 15px rgba(139, 195, 74, 0.7);
+        }
+
+        .page-header p {
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+
+        .knowledge-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+            margin: 50px 0;
+        }
+
+        .knowledge-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 30px;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            animation: fadeIn 1s ease;
+        }
+
+        .knowledge-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+            background: rgba(255, 255, 255, 0.15);
+        }
+
+        .card-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .card-icon {
+            font-size: 40px;
+            margin-right: 15px;
+            color: #8bc34a;
+        }
+
+        .card-title {
+            font-size: 1.8rem;
+            margin-bottom: 5px;
+        }
+
+        .card-content {
+            line-height: 1.6;
+        }
+
+        .card-content ul {
+            margin-left: 20px;
+            margin-top: 10px;
+        }
+
+        .card-content li {
+            margin-bottom: 8px;
+        }
+
+        .tips-section {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 40px;
+            margin: 50px 0;
+            animation: fadeIn 1s ease;
+        }
+
+        .tips-header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .tips-header h3 {
+            font-size: 2.2rem;
+            margin-bottom: 10px;
+        }
+
+        .tips-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+
+        .tip-item {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 15px;
+            padding: 20px;
+            transition: all 0.3s ease;
+        }
+
+        .tip-item:hover {
+            background: rgba(255, 255, 255, 0.1);
+            transform: translateY(-5px);
+        }
+
+        .tip-icon {
+            font-size: 30px;
+            margin-bottom: 15px;
+            color: #8bc34a;
+        }
+
+        .tip-title {
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+
+        .tip-content {
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+
+        .quiz-section {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 40px;
+            margin: 50px 0;
+            text-align: center;
+            animation: fadeIn 1s ease;
+        }
+
+        .quiz-header h3 {
+            font-size: 2.2rem;
+            margin-bottom: 10px;
+        }
+
+        .quiz-header p {
+            margin-bottom: 30px;
+            font-size: 1.1rem;
+        }
+
+        .quiz-btn {
+            padding: 15px 30px;
+            background: linear-gradient(to right, #4caf50, #2e7d32);
+            border: none;
+            border-radius: 50px;
+            color: white;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: inline-block;
+        }
+
+        .quiz-btn:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        footer {
+            text-align: center;
+            padding: 30px 0;
+            margin-top: 50px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-bottom: 20px;
+        }
+
+        .footer-links a {
+            color: #8bc34a;
+            margin: 0 15px;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            text-decoration: underline;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes slideUp {
+            from { transform: translateY(50px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        @media (max-width: 768px) {
+            .page-header h2 {
+                font-size: 2.2rem;
+            }
+            
+            .knowledge-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .tips-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="background-animation" id="backgroundAnimation"></div>
+    
+    <div class="container">
+        <header>
+            <div class="logo">
+                <i class="fas fa-graduation-cap"></i>
+                <h1>Binify ECO Route</h1>
+            </div>
+            <a href="home.html" class="back-btn">
+                <i class="fas fa-arrow-left"></i> Back to Home
+            </a>
+        </header>
+        
+        <section class="page-header">
+            <h2>Knowledge Center</h2>
+            <p>Expand your understanding of waste management, recycling techniques, and sustainable practices to make a positive environmental impact.</p>
+        </section>
+        
+        <div class="knowledge-grid">
+            <div class="knowledge-card">
+                <div class="card-header">
+                    <i class="fas fa-recycle card-icon"></i>
+                    <div>
+                        <h3 class="card-title">Recycling Basics</h3>
+                        <p>Understanding the fundamentals</p>
+                    </div>
+                </div>
+                <div class="card-content">
+                    <p>Recycling is the process of converting waste materials into new materials and objects. It's an essential component of modern waste reduction and helps conserve natural resources.</p>
+                    <ul>
+                        <li>Separate materials by type (paper, plastic, glass, metal)</li>
+                        <li>Clean containers before recycling</li>
+                        <li>Know your local recycling guidelines</li>
+                        <li>Reduce contamination by not bagging recyclables</li>
+                        <li>Understand recycling symbols and numbers</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="knowledge-card">
+                <div class="card-header">
+                    <i class="fas fa-leaf card-icon"></i>
+                    <div>
+                        <h3 class="card-title">Composting</h3>
+                        <p>Turning waste into nutrients</p>
+                    </div>
+                </div>
+                <div class="card-content">
+                    <p>Composting is the natural process of recycling organic matter into a valuable fertilizer that can enrich soil and plants. It reduces landfill waste and creates nutrient-rich soil.</p>
+                    <ul>
+                        <li>Use a proper balance of greens and browns</li>
+                        <li>Turn your compost regularly for aeration</li>
+                        <li>Maintain proper moisture levels</li>
+                        <li>What to compost: fruit/vegetable scraps, coffee grounds, eggshells</li>
+                        <li>Avoid composting: meat, dairy, oily foods</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="knowledge-card">
+                <div class="card-header">
+                    <i class="fas fa-trash-alt card-icon"></i>
+                    <div>
+                        <h3 class="card-title">Waste Reduction</h3>
+                        <p>Minimizing what goes to landfill</p>
+                    </div>
+                </div>
+                <div class="card-content">
+                    <p>Waste reduction focuses on preventing waste generation in the first place. It's the most effective way to manage waste and conserve resources.</p>
+                    <ul>
+                        <li>Choose products with minimal packaging</li>
+                        <li>Use reusable bags, containers, and bottles</li>
+                        <li>Repair items instead of replacing them</li>
+                        <li>Donate unwanted items in good condition</li>
+                        <li>Buy in bulk to reduce packaging waste</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="knowledge-card">
+                <div class="card-header">
+                    <i class="fas fa-bolt card-icon"></i>
+                    <div>
+                        <h3 class="card-title">E-Waste Management</h3>
+                        <p>Proper disposal of electronics</p>
+                    </div>
+                </div>
+                <div class="card-content">
+                    <p>Electronic waste contains valuable materials and hazardous components. Proper e-waste management prevents environmental contamination and recovers valuable resources.</p>
+                    <ul>
+                        <li>Never dispose of electronics in regular trash</li>
+                        <li>Find certified e-waste recyclers</li>
+                        <li>Consider refurbishing or donating working electronics</li>
+                        <li>Remove personal data before recycling</li>
+                        <li>Check for manufacturer take-back programs</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="knowledge-card">
+                <div class="card-header">
+                    <i class="fas fa-industry card-icon"></i>
+                    <div>
+                        <h3 class="card-title">Industrial Waste</h3>
+                        <p>Managing commercial waste streams</p>
+                    </div>
+                </div>
+                <div class="card-content">
+                    <p>Industrial waste management focuses on handling waste generated by manufacturing and industrial processes in an environmentally responsible manner.</p>
+                    <ul>
+                        <li>Implement waste audit and tracking systems</li>
+                        <li>Explore industrial symbiosis opportunities</li>
+                        <li>Invest in cleaner production technologies</li>
+                        <li>Train employees on proper waste segregation</li>
+                        <li>Partner with specialized waste management companies</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="knowledge-card">
+                <div class="card-header">
+                    <i class="fas fa-globe-americas card-icon"></i>
+                    <div>
+                        <h3 class="card-title">Global Initiatives</h3>
+                        <p>International waste management efforts</p>
+                    </div>
+                </div>
+                <div class="card-content">
+                    <p>Countries worldwide are implementing innovative waste management strategies to address the growing challenge of waste generation and its environmental impact.</p>
+                    <ul>
+                        <li>Sweden's waste-to-energy programs</li>
+                        <li>Japan's meticulous sorting systems</li>
+                        <li>Germany's packaging regulations</li>
+                        <li>South Korea's food waste reduction</li>
+                        <li>Circular economy initiatives in the EU</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        
+        <section class="tips-section">
+            <div class="tips-header">
+                <h3>Sustainable Living Tips</h3>
+                <p>Simple changes you can make today to reduce your environmental footprint</p>
+            </div>
+            <div class="tips-grid">
+                <div class="tip-item">
+                    <i class="fas fa-shopping-bag tip-icon"></i>
+                    <h4 class="tip-title">Smart Shopping</h4>
+                    <p class="tip-content">Bring reusable bags, choose products with minimal packaging, and buy in bulk to reduce waste.</p>
+                </div>
+                
+                <div class="tip-item">
+                    <i class="fas fa-utensils tip-icon"></i>
+                    <h4 class="tip-title">Food Waste Reduction</h4>
+                    <p class="tip-content">Plan meals, store food properly, and compost scraps to minimize food waste.</p>
+                </div>
+                
+                <div class="tip-item">
+                    <i class="fas fa-tint tip-icon"></i>
+                    <h4 class="tip-title">Water Conservation</h4>
+                    <p class="tip-content">Fix leaks, install low-flow fixtures, and collect rainwater for gardening.</p>
+                </div>
+                
+                <div class="tip-item">
+                    <i class="fas fa-bicycle tip-icon"></i>
+                    <h4 class="tip-title">Eco Transportation</h4>
+                    <p class="tip-content">Walk, bike, use public transport, or carpool to reduce your carbon footprint.</p>
+                </div>
+                
+                <div class="tip-item">
+                    <i class="fas fa-plug tip-icon"></i>
+                    <h4 class="tip-title">Energy Efficiency</h4>
+                    <p class="tip-content">Use LED bulbs, unplug electronics when not in use, and choose energy-efficient appliances.</p>
+                </div>
+                
+                <div class="tip-item">
+                    <i class="fas fa-seedling tip-icon"></i>
+                    <h4 class="tip-title">Green Spaces</h4>
+                    <p class="tip-content">Plant native species, create compost, and avoid chemical pesticides in your garden.</p>
+                </div>
+            </div>
+        </section>
+        
+        <footer>
+            <p>&copy; 2023 Binify ECO Route Knowledge Center. All rights reserved.</p>
+        </footer>
+    </div>
+
+    <script>
+        // Background animation
+        const backgroundAnimation = document.getElementById('backgroundAnimation');
+        
+        // Create bubbles
+        for (let i = 0; i < 15; i++) {
+            const bubble = document.createElement('div');
+            bubble.classList.add('bubble');
+            const size = Math.random() * 60 + 20;
+            bubble.style.width = `${size}px`;
+            bubble.style.height = `${size}px`;
+            bubble.style.left = `${Math.random() * 100}%`;
+            bubble.style.top = `${Math.random() * 100}%`;
+            bubble.style.animationDelay = `${Math.random() * 15}s`;
+            backgroundAnimation.appendChild(bubble);
+        }
+        
+        // Create leaves
+        for (let i = 0; i < 10; i++) {
+            const leaf = document.createElement('div');
+            leaf.classList.add('leaf');
+            leaf.innerHTML = '<i class="fas fa-leaf"></i>';
+            leaf.style.left = `${Math.random() * 100}%`;
+            leaf.style.animationDelay = `${Math.random() * 20}s`;
+            backgroundAnimation.appendChild(leaf);
+        }
+
+    </script>
+</body>
+</html>

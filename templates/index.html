@@ -1,0 +1,1008 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Binify ECO Route - Waste Management</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #1a2f1a, #2d5a2d, #3a7c3a);
+            color: #fff;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+        }
+
+        .splash-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #0a1f0a, #1a3a1a, #2a5a2a);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            animation: fadeOut 0.8s ease 5s forwards;
+            overflow: hidden;
+        }
+
+        .splash-background {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+        }
+
+        .splash-logo {
+            width: 180px;
+            height: 180px;
+            background: linear-gradient(135deg, #8bc34a, #4caf50, #2e7d32);
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 40px;
+            box-shadow: 
+                0 0 60px rgba(139, 195, 74, 0.7),
+                0 0 100px rgba(76, 175, 80, 0.5),
+                inset 0 0 20px rgba(255, 255, 255, 0.2);
+            animation: 
+                pulse 2.5s infinite alternate,
+                floatLogo 6s ease-in-out infinite,
+                glow 3s ease-in-out infinite alternate;
+            position: relative;
+            z-index: 10;
+        }
+
+        .splash-logo::before {
+            content: '';
+            position: absolute;
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(139, 195, 74, 0.4) 0%, transparent 70%);
+            animation: ripple 4s linear infinite;
+        }
+
+        .splash-logo::after {
+            content: '';
+            position: absolute;
+            width: 220px;
+            height: 220px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(76, 175, 80, 0.3) 0%, transparent 70%);
+            animation: ripple 4s linear infinite 1s;
+        }
+
+        .splash-logo img {
+            width: 70%;
+            height: 70%;
+            object-fit: contain;
+            filter: brightness(0) invert(1);
+            z-index: 2;
+        }
+
+        .splash-title {
+            font-size: 5rem;
+            text-align: center;
+            margin-bottom: 20px;
+            text-shadow: 
+                0 0 20px rgba(139, 195, 74, 0.9),
+                0 0 40px rgba(76, 175, 80, 0.7),
+                0 0 60px rgba(46, 125, 50, 0.5);
+            background: linear-gradient(to right, #8bc34a, #4caf50, #2e7d32, #8bc34a);
+            background-size: 300% 100%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: 
+                slideInUp 1.5s ease,
+                gradientShift 3s ease infinite,
+                textGlow 2s ease-in-out infinite alternate;
+            position: relative;
+            z-index: 10;
+        }
+
+        .splash-subtitle {
+            font-size: 1.8rem;
+            text-align: center;
+            opacity: 0.9;
+            animation: 
+                fadeIn 2s ease,
+                subtitleFloat 4s ease-in-out infinite;
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+            position: relative;
+            z-index: 10;
+        }
+
+        /* Advanced Background Animations */
+        .floating-elements {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+        }
+
+        .floating-element {
+            position: absolute;
+            opacity: 0.7;
+        }
+
+        .element-1 { animation: floatElement1 20s linear infinite; }
+        .element-2 { animation: floatElement2 25s linear infinite; }
+        .element-3 { animation: floatElement3 30s linear infinite; }
+        .element-4 { animation: floatElement4 35s linear infinite; }
+
+        .particle {
+            position: absolute;
+            background: rgba(139, 195, 74, 0.6);
+            border-radius: 50%;
+            animation: particleFloat 15s linear infinite;
+        }
+
+        .energy-orb {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: radial-gradient(circle, #8bc34a, transparent);
+            box-shadow: 0 0 20px #8bc34a;
+            animation: energyPulse 4s ease-in-out infinite;
+        }
+
+        .wave {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 200%;
+            height: 20%;
+            background: linear-gradient(90deg, transparent, rgba(139, 195, 74, 0.3), transparent);
+            animation: waveMove 10s linear infinite;
+        }
+
+        .wave-2 {
+            animation: waveMove 8s linear infinite reverse;
+            opacity: 0.5;
+            height: 15%;
+        }
+
+        /* Animations */
+        @keyframes fadeOut {
+            to { opacity: 0; visibility: hidden; }
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); box-shadow: 0 0 60px rgba(139, 195, 74, 0.7), 0 0 100px rgba(76, 175, 80, 0.5); }
+            100% { transform: scale(1.08); box-shadow: 0 0 80px rgba(139, 195, 74, 0.9), 0 0 140px rgba(76, 175, 80, 0.7); }
+        }
+
+        @keyframes floatLogo {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            25% { transform: translateY(-20px) rotate(5deg); }
+            50% { transform: translateY(-10px) rotate(0deg); }
+            75% { transform: translateY(-15px) rotate(-5deg); }
+        }
+
+        @keyframes glow {
+            0% { box-shadow: 0 0 60px rgba(139, 195, 74, 0.7), 0 0 100px rgba(76, 175, 80, 0.5); }
+            100% { box-shadow: 0 0 80px rgba(139, 195, 74, 0.9), 0 0 140px rgba(76, 175, 80, 0.7), 0 0 200px rgba(46, 125, 50, 0.5); }
+        }
+
+        @keyframes ripple {
+            0% { transform: scale(0.8); opacity: 1; }
+            100% { transform: scale(1.5); opacity: 0; }
+        }
+
+        @keyframes slideInUp {
+            from { transform: translateY(80px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        @keyframes gradientShift {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+
+        @keyframes textGlow {
+            0% { text-shadow: 0 0 20px rgba(139, 195, 74, 0.9), 0 0 40px rgba(76, 175, 80, 0.7); }
+            100% { text-shadow: 0 0 30px rgba(139, 195, 74, 1), 0 0 60px rgba(76, 175, 80, 0.9), 0 0 80px rgba(46, 125, 50, 0.7); }
+        }
+
+        @keyframes subtitleFloat {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        @keyframes floatElement1 {
+            0% { transform: translate(0, 0) rotate(0deg); }
+            25% { transform: translate(100px, 150px) rotate(90deg); }
+            50% { transform: translate(200px, 50px) rotate(180deg); }
+            75% { transform: translate(100px, -100px) rotate(270deg); }
+            100% { transform: translate(0, 0) rotate(360deg); }
+        }
+
+        @keyframes floatElement2 {
+            0% { transform: translate(0, 0) rotate(0deg); }
+            25% { transform: translate(-150px, 100px) rotate(-90deg); }
+            50% { transform: translate(-250px, -50px) rotate(-180deg); }
+            75% { transform: translate(-100px, -150px) rotate(-270deg); }
+            100% { transform: translate(0, 0) rotate(-360deg); }
+        }
+
+        @keyframes floatElement3 {
+            0% { transform: translate(0, 0) scale(1); }
+            33% { transform: translate(200px, -100px) scale(1.2); }
+            66% { transform: translate(-150px, 200px) scale(0.8); }
+            100% { transform: translate(0, 0) scale(1); }
+        }
+
+        @keyframes floatElement4 {
+            0% { transform: translate(0, 0) rotate(0deg); }
+            25% { transform: translate(300px, 100px) rotate(180deg); }
+            50% { transform: translate(100px, 300px) rotate(360deg); }
+            75% { transform: translate(-200px, 150px) rotate(540deg); }
+            100% { transform: translate(0, 0) rotate(720deg); }
+        }
+
+        @keyframes particleFloat {
+            0% { transform: translateY(100vh) translateX(0) scale(0); opacity: 0; }
+            10% { opacity: 1; }
+            90% { opacity: 1; }
+            100% { transform: translateY(-100px) translateX(100px) scale(1); opacity: 0; }
+        }
+
+        @keyframes energyPulse {
+            0%, 100% { transform: scale(1); opacity: 0.7; }
+            50% { transform: scale(1.5); opacity: 1; }
+        }
+
+        @keyframes waveMove {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+
+        /* Loading Bar */
+        .loading-container {
+            width: 300px;
+            height: 6px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            margin-top: 40px;
+            overflow: hidden;
+            position: relative;
+            z-index: 10;
+        }
+
+        .loading-bar {
+            height: 100%;
+            width: 0%;
+            background: linear-gradient(90deg, #8bc34a, #4caf50, #2e7d32);
+            border-radius: 10px;
+            animation: loading 5s ease-in-out forwards;
+            box-shadow: 0 0 10px rgba(139, 195, 74, 0.7);
+        }
+
+        @keyframes loading {
+            0% { width: 0%; }
+            20% { width: 25%; }
+            40% { width: 50%; }
+            60% { width: 75%; }
+            80% { width: 90%; }
+            100% { width: 100%; }
+        }
+
+        /* Rest of the styles for the main content */
+        .background-animation {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            overflow: hidden;
+        }
+
+        .bubble {
+            position: absolute;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.1);
+            animation: float 15s infinite ease-in-out;
+        }
+
+        .leaf {
+            position: absolute;
+            font-size: 24px;
+            color: rgba(139, 195, 74, 0.5);
+            animation: fall 20s infinite linear;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(180deg); }
+        }
+
+        @keyframes fall {
+            0% { transform: translateY(-100px) rotate(0deg); }
+            100% { transform: translateY(100vh) rotate(360deg); }
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+            opacity: 0;
+            animation: fadeIn 0.5s ease 5.5s forwards;
+        }
+
+        /* Rest of your existing styles for header, auth-container, etc. */
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+            animation: fadeIn 1.5s ease;
+        }
+
+        .header-content {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 20px;
+            margin-bottom: 10px;
+        }
+
+        .logo {
+            width: 60px;
+            height: 60px;
+            background: white;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 0 0 15px rgba(139, 195, 74, 0.5);
+        }
+
+        .logo img {
+            width: 80%;
+            height: 80%;
+            object-fit: contain;
+        }
+
+        .header h1 {
+            font-size: 3.5rem;
+            text-shadow: 0 0 15px rgba(139, 195, 74, 0.7);
+            background: linear-gradient(to right, #8bc34a, #4caf50, #2e7d32);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .header p {
+            font-size: 1.2rem;
+            max-width: 600px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+
+        .auth-container {
+            display: flex;
+            width: 100%;
+            max-width: 900px;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
+            animation: slideUp 1s ease;
+        }
+
+        .illustration {
+            flex: 1;
+            background: linear-gradient(135deg, #2e7d32, #4caf50);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 40px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .illustration::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="100" height="100" opacity="0.1"><path d="M50,10 L60,40 L90,40 L65,60 L75,90 L50,70 L25,90 L35,60 L10,40 L40,40 Z" fill="white"/></svg>');
+        }
+
+        .illustration h2 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            text-align: center;
+            z-index: 1;
+        }
+
+        .illustration p {
+            text-align: center;
+            font-size: 1.1rem;
+            line-height: 1.6;
+            z-index: 1;
+        }
+
+        .recycle-icon {
+            font-size: 120px;
+            margin: 30px 0;
+            color: rgba(255, 255, 255, 0.9);
+            animation: spin 20s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .auth-forms {
+            flex: 1;
+            padding: 40px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .form-toggle {
+            display: flex;
+            margin-bottom: 30px;
+            border-radius: 50px;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 5px;
+        }
+
+        .toggle-btn {
+            flex: 1;
+            padding: 12px;
+            text-align: center;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 600;
+        }
+
+        .toggle-btn.active {
+            background: #4caf50;
+            box-shadow: 0 5px 15px rgba(76, 175, 80, 0.4);
+        }
+
+        .form {
+            display: none;
+            animation: fadeIn 0.5s ease;
+        }
+
+        .form.active {
+            display: block;
+        }
+
+        .form h2 {
+            margin-bottom: 25px;
+            font-size: 2rem;
+            color: #8bc34a;
+        }
+
+        .input-group {
+            margin-bottom: 20px;
+            position: relative;
+        }
+
+        .input-group i {
+            position: absolute;
+            left: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #8bc34a;
+        }
+
+        .input-group input {
+            width: 100%;
+            padding: 15px 15px 15px 45px;
+            border: none;
+            border-radius: 50px;
+            background: rgba(255, 255, 255, 0.15);
+            color: white;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .input-group input:focus {
+            outline: none;
+            background: rgba(255, 255, 255, 0.25);
+            box-shadow: 0 0 0 2px #8bc34a;
+        }
+
+        .input-group input::placeholder {
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        .btn {
+            width: 100%;
+            padding: 15px;
+            border: none;
+            border-radius: 50px;
+            background: linear-gradient(to right, #4caf50, #2e7d32);
+            color: white;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: 10px;
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .btn:active {
+            transform: translateY(-1px);
+        }
+
+        .forgot-password {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .forgot-password a {
+            color: #8bc34a;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .forgot-password a:hover {
+            text-decoration: underline;
+        }
+
+        .message {
+            padding: 15px;
+            border-radius: 10px;
+            margin-top: 20px;
+            text-align: center;
+            display: none;
+        }
+
+        .error {
+            background: rgba(244, 67, 54, 0.2);
+            border: 1px solid #f44336;
+            color: #ff8a80;
+        }
+
+        .success {
+            background: rgba(76, 175, 80, 0.2);
+            border: 1px solid #4caf50;
+            color: #a5d6a7;
+        }
+
+        .features {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            margin-top: 50px;
+            width: 100%;
+            max-width: 1000px;
+        }
+
+        .feature {
+            flex: 1;
+            min-width: 250px;
+            max-width: 300px;
+            text-align: center;
+            padding: 20px;
+            margin: 10px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            transition: all 0.3s ease;
+        }
+
+        .feature:hover {
+            transform: translateY(-10px);
+            background: rgba(255, 255, 255, 0.15);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .feature i {
+            font-size: 40px;
+            margin-bottom: 15px;
+            color: #8bc34a;
+        }
+
+        .feature h3 {
+            margin-bottom: 10px;
+            font-size: 1.4rem;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes slideUp {
+            from { transform: translateY(50px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        @media (max-width: 768px) {
+            .auth-container {
+                flex-direction: column;
+            }
+            
+            .header h1 {
+                font-size: 2.5rem;
+            }
+            
+            .splash-title {
+                font-size: 3rem;
+            }
+            
+            .header-content {
+                flex-direction: column;
+                gap: 10px;
+            }
+            
+            .illustration {
+                padding: 30px 20px;
+            }
+            
+            .recycle-icon {
+                font-size: 80px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Enhanced Splash Screen -->
+    <div class="splash-screen" id="splashScreen">
+        <div class="splash-background" id="splashBackground">
+            <!-- Animated elements will be added here by JavaScript -->
+        </div>
+        
+        <div class="splash-logo">
+            <!-- Replace with your actual logo path -->
+            <img src="logo.png" alt="Binify ECO Route Logo">
+        </div>
+        
+        <h1 class="splash-title">Binify ECO Route</h1>
+        <p class="splash-subtitle">Smart Waste Management Solutions</p>
+        
+        <div class="loading-container">
+            <div class="loading-bar"></div>
+        </div>
+    </div>
+
+    <div class="background-animation" id="backgroundAnimation"></div>
+    
+    <div class="container">
+        <div class="header">
+            <div class="header-content">
+                <div class="logo">
+                    <!-- Replace with your actual logo path -->
+                    <img src="logo.png" alt="Binify ECO Route Logo">
+                </div>
+                <h1>Binify ECO Route</h1>
+            </div>
+            <p>Join our mission to create a cleaner, greener planet through effective waste management</p>
+        </div>
+        
+        <div class="auth-container">
+            <div class="illustration">
+                <div class="recycle-icon">
+                    <i class="fas fa-recycle"></i>
+                </div>
+                <h2>Smart Waste Solutions</h2>
+                <p>Track, manage, and optimize your waste disposal with our cutting-edge platform. Together we can make a difference!</p>
+            </div>
+            
+            <div class="auth-forms">
+                <div class="form-toggle">
+                    <div class="toggle-btn active" id="loginToggle">Login</div>
+                    <div class="toggle-btn" id="signupToggle">Sign Up</div>
+                </div>
+                
+                <form class="form active" id="loginForm">
+                    <h2>Welcome Back</h2>
+                    <div class="input-group">
+                        <i class="fas fa-envelope"></i>
+                        <input type="email" id="loginEmail" placeholder="Email Address" required>
+                    </div>
+                    <div class="input-group">
+                        <i class="fas fa-lock"></i>
+                        <input type="password" id="loginPassword" placeholder="Password" required>
+                    </div>
+                    <button type="submit" class="btn">Login to Your Account</button>
+                    <div class="forgot-password">
+                        <a href="#" id="forgotPassword">Forgot your password?</a>
+                    </div>
+                    <div class="message error" id="loginError"></div>
+                    <div class="message success" id="loginSuccess"></div>
+                </form>
+                
+                <form class="form" id="signupForm">
+                    <h2>Join Our Community</h2>
+                    <div class="input-group">
+                        <i class="fas fa-user"></i>
+                        <input type="text" id="signupName" placeholder="Full Name" required>
+                    </div>
+                    <div class="input-group">
+                        <i class="fas fa-envelope"></i>
+                        <input type="email" id="signupEmail" placeholder="Email Address" required>
+                    </div>
+                    <div class="input-group">
+                        <i class="fas fa-lock"></i>
+                        <input type="password" id="signupPassword" placeholder="Password" required>
+                    </div>
+                    <div class="input-group">
+                        <i class="fas fa-lock"></i>
+                        <input type="password" id="signupConfirmPassword" placeholder="Confirm Password" required>
+                    </div>
+                    <button type="submit" class="btn">Create Account</button>
+                    <div class="message error" id="signupError"></div>
+                    <div class="message success" id="signupSuccess"></div>
+                </form>
+            </div>
+        </div>
+        
+        <div class="features">
+            <div class="feature">
+                <i class="fas fa-leaf"></i>
+                <h3>Reduce Waste</h3>
+                <p>Track your waste production and find ways to minimize your environmental footprint</p>
+            </div>
+            <div class="feature">
+                <i class="fas fa-recycle"></i>
+                <h3>Smart Recycling</h3>
+                <p>Get personalized recommendations for recycling different materials effectively</p>
+            </div>
+            <div class="feature">
+                <i class="fas fa-chart-line"></i>
+                <h3>Track Progress</h3>
+                <p>Monitor your waste management improvements with detailed analytics</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Firebase configuration
+        const firebaseConfig = {
+            apiKey: "AIzaSyBJMpL_5IciFMCWovpSxkJXuaoXIfSe2gU",
+            authDomain: "kammu-ai.firebaseapp.com",
+            projectId: "kammu-ai",
+            storageBucket: "kammu-ai.firebasestorage.app",
+            messagingSenderId: "652507062152",
+            appId: "1:652507062152:web:036637f3ebecab5ec6e43d",
+            measurementId: "G-EH3TEF2KTK"
+        };
+
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+        const auth = firebase.auth();
+
+        // DOM Elements
+        const loginToggle = document.getElementById('loginToggle');
+        const signupToggle = document.getElementById('signupToggle');
+        const loginForm = document.getElementById('loginForm');
+        const signupForm = document.getElementById('signupForm');
+        const loginEmail = document.getElementById('loginEmail');
+        const loginPassword = document.getElementById('loginPassword');
+        const signupName = document.getElementById('signupName');
+        const signupEmail = document.getElementById('signupEmail');
+        const signupPassword = document.getElementById('signupPassword');
+        const signupConfirmPassword = document.getElementById('signupConfirmPassword');
+        const loginError = document.getElementById('loginError');
+        const loginSuccess = document.getElementById('loginSuccess');
+        const signupError = document.getElementById('signupError');
+        const signupSuccess = document.getElementById('signupSuccess');
+        const forgotPassword = document.getElementById('forgotPassword');
+
+        // Enhanced Splash Screen Animation
+        function createSplashAnimations() {
+            const splashBackground = document.getElementById('splashBackground');
+            
+            // Create floating elements
+            for (let i = 0; i < 15; i++) {
+                const element = document.createElement('div');
+                element.className = `floating-element element-${Math.floor(Math.random() * 4) + 1}`;
+                element.innerHTML = '<i class="fas fa-leaf"></i>';
+                element.style.fontSize = `${Math.random() * 30 + 20}px`;
+                element.style.color = `rgba(139, 195, 74, ${Math.random() * 0.5 + 0.3})`;
+                element.style.left = `${Math.random() * 100}%`;
+                element.style.top = `${Math.random() * 100}%`;
+                splashBackground.appendChild(element);
+            }
+            
+            // Create particles
+            for (let i = 0; i < 50; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                const size = Math.random() * 8 + 2;
+                particle.style.width = `${size}px`;
+                particle.style.height = `${size}px`;
+                particle.style.left = `${Math.random() * 100}%`;
+                particle.style.animationDelay = `${Math.random() * 15}s`;
+                particle.style.animationDuration = `${Math.random() * 10 + 10}s`;
+                splashBackground.appendChild(particle);
+            }
+            
+            // Create energy orbs
+            for (let i = 0; i < 20; i++) {
+                const orb = document.createElement('div');
+                orb.className = 'energy-orb';
+                orb.style.left = `${Math.random() * 100}%`;
+                orb.style.top = `${Math.random() * 100}%`;
+                orb.style.animationDelay = `${Math.random() * 4}s`;
+                splashBackground.appendChild(orb);
+            }
+            
+            // Create waves
+            const wave1 = document.createElement('div');
+            wave1.className = 'wave';
+            splashBackground.appendChild(wave1);
+            
+            const wave2 = document.createElement('div');
+            wave2.className = 'wave wave-2';
+            splashBackground.appendChild(wave2);
+        }
+
+        // Form Toggle
+        loginToggle.addEventListener('click', () => {
+            loginToggle.classList.add('active');
+            signupToggle.classList.remove('active');
+            loginForm.classList.add('active');
+            signupForm.classList.remove('active');
+            clearMessages();
+        });
+
+        signupToggle.addEventListener('click', () => {
+            signupToggle.classList.add('active');
+            loginToggle.classList.remove('active');
+            signupForm.classList.add('active');
+            loginForm.classList.remove('active');
+            clearMessages();
+        });
+
+        // Login Form Submission
+        loginForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const email = loginEmail.value;
+            const password = loginPassword.value;
+            
+            clearMessages();
+            
+            auth.signInWithEmailAndPassword(email, password)
+                .then((userCredential) => {
+                    // Signed in
+                    showMessage(loginSuccess, "Login successful! Redirecting...");
+                    setTimeout(() => {
+                        window.location.href = "home.html";
+                    }, 1500);
+                })
+                .catch((error) => {
+                    showMessage(loginError, error.message);
+                });
+        });
+
+        // Signup Form Submission
+        signupForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const name = signupName.value;
+            const email = signupEmail.value;
+            const password = signupPassword.value;
+            const confirmPassword = signupConfirmPassword.value;
+            
+            clearMessages();
+            
+            if (password !== confirmPassword) {
+                showMessage(signupError, "Passwords do not match");
+                return;
+            }
+            
+            if (password.length < 6) {
+                showMessage(signupError, "Password should be at least 6 characters");
+                return;
+            }
+            
+            auth.createUserWithEmailAndPassword(email, password)
+                .then((userCredential) => {
+                    // Signed up
+                    showMessage(signupSuccess, "Account created successfully! Redirecting...");
+                    setTimeout(() => {
+                        window.location.href = "home.html";
+                    }, 1500);
+                })
+                .catch((error) => {
+                    showMessage(signupError, error.message);
+                });
+        });
+
+        // Forgot Password
+        forgotPassword.addEventListener('click', (e) => {
+            e.preventDefault();
+            const email = prompt("Please enter your email address:");
+            
+            if (email) {
+                auth.sendPasswordResetEmail(email)
+                    .then(() => {
+                        alert("Password reset email sent! Check your inbox.");
+                    })
+                    .catch((error) => {
+                        alert(error.message);
+                    });
+            }
+        });
+
+        // Check if user is already logged in - REMOVED AUTO REDIRECT
+        // Users will always see the login page first
+        auth.onAuthStateChanged((user) => {
+            // We're not automatically redirecting anymore
+            // The user must explicitly log in each time
+        });
+
+        // Helper functions
+        function showMessage(element, message) {
+            element.textContent = message;
+            element.style.display = 'block';
+        }
+
+        function clearMessages() {
+            loginError.style.display = 'none';
+            loginSuccess.style.display = 'none';
+            signupError.style.display = 'none';
+            signupSuccess.style.display = 'none';
+        }
+
+        // Background animation for main page
+        const backgroundAnimation = document.getElementById('backgroundAnimation');
+        
+        // Create bubbles
+        for (let i = 0; i < 15; i++) {
+            const bubble = document.createElement('div');
+            bubble.classList.add('bubble');
+            const size = Math.random() * 60 + 20;
+            bubble.style.width = `${size}px`;
+            bubble.style.height = `${size}px`;
+            bubble.style.left = `${Math.random() * 100}%`;
+            bubble.style.top = `${Math.random() * 100}%`;
+            bubble.style.animationDelay = `${Math.random() * 15}s`;
+            backgroundAnimation.appendChild(bubble);
+        }
+        
+        // Create leaves
+        for (let i = 0; i < 10; i++) {
+            const leaf = document.createElement('div');
+            leaf.classList.add('leaf');
+            leaf.innerHTML = '<i class="fas fa-leaf"></i>';
+            leaf.style.left = `${Math.random() * 100}%`;
+            leaf.style.animationDelay = `${Math.random() * 20}s`;
+            backgroundAnimation.appendChild(leaf);
+        }
+
+        // Initialize enhanced splash screen
+        createSplashAnimations();
+    </script>
+</body>
+</html>

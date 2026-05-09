@@ -1,0 +1,3 @@
+pip install flask tensorflow pillow opencv-python numpy geopy werkzeug gunicorn flask-sqlalchemy psycopg2-binary email-validator
+
+python app.py

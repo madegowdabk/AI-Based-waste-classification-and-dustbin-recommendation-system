@@ -1,0 +1,1218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Motivation & Rewards - EcoWarrior</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #1a2f1a, #2d5a2d, #3a7c3a);
+            color: #fff;
+            min-height: 100vh;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        .background-animation {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            overflow: hidden;
+        }
+
+        .bubble {
+            position: absolute;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.1);
+            animation: float 15s infinite ease-in-out;
+        }
+
+        .leaf {
+            position: absolute;
+            font-size: 24px;
+            color: rgba(139, 195, 74, 0.5);
+            animation: fall 20s infinite linear;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(180deg); }
+        }
+
+        @keyframes fall {
+            0% { transform: translateY(-100px) rotate(0deg); }
+            100% { transform: translateY(100vh) rotate(360deg); }
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
+            animation: fadeIn 1s ease;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+
+        .logo i {
+            font-size: 2.5rem;
+            margin-right: 10px;
+            color: #8bc34a;
+        }
+
+        .logo h1 {
+            font-size: 2rem;
+            background: linear-gradient(to right, #8bc34a, #4caf50, #2e7d32);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .back-btn {
+            padding: 10px 20px;
+            background: rgba(255, 255, 255, 0.15);
+            border: none;
+            border-radius: 50px;
+            color: white;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 600;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .back-btn:hover {
+            background: rgba(255, 255, 255, 0.25);
+            transform: translateY(-2px);
+        }
+
+        .page-header {
+            text-align: center;
+            padding: 40px 0;
+            animation: slideUp 1s ease;
+        }
+
+        .page-header h2 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            text-shadow: 0 0 15px rgba(139, 195, 74, 0.7);
+        }
+
+        .page-header p {
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+
+        .stats-section {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin: 40px 0;
+        }
+
+        .stat-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 25px;
+            text-align: center;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .stat-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .stat-icon {
+            font-size: 40px;
+            margin-bottom: 15px;
+            color: #8bc34a;
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+
+        .stat-label {
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+
+        .challenges-section {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 40px;
+            margin: 50px 0;
+            animation: fadeIn 1s ease;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .section-header h3 {
+            font-size: 2.2rem;
+            margin-bottom: 10px;
+        }
+
+        .section-header p {
+            font-size: 1.1rem;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .challenges-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+        }
+
+        .challenge-card {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 15px;
+            padding: 25px;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .challenge-card:hover {
+            background: rgba(255, 255, 255, 0.1);
+            transform: translateY(-5px);
+        }
+
+        .challenge-card.completed {
+            border-left: 5px solid #8bc34a;
+        }
+
+        .challenge-card.in-progress {
+            border-left: 5px solid #ffc107;
+        }
+
+        .challenge-card.not-started {
+            border-left: 5px solid #f44336;
+        }
+
+        .challenge-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+
+        .challenge-icon {
+            font-size: 30px;
+            margin-right: 15px;
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            background: rgba(139, 195, 74, 0.2);
+        }
+
+        .challenge-title {
+            font-size: 1.4rem;
+            margin-bottom: 5px;
+        }
+
+        .challenge-description {
+            font-size: 0.95rem;
+            margin-bottom: 20px;
+            line-height: 1.5;
+        }
+
+        .progress-container {
+            margin-bottom: 15px;
+        }
+
+        .progress-label {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 5px;
+            font-size: 0.9rem;
+        }
+
+        .progress-bar {
+            height: 8px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(to right, #8bc34a, #4caf50);
+            border-radius: 10px;
+            transition: width 0.5s ease;
+        }
+
+        .challenge-points {
+            display: flex;
+            align-items: center;
+            font-size: 0.9rem;
+            margin-bottom: 15px;
+        }
+
+        .points-icon {
+            color: #ffc107;
+            margin-right: 5px;
+        }
+
+        .challenge-actions {
+            display: flex;
+            gap: 10px;
+        }
+
+        .btn {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 50px;
+            background: linear-gradient(to right, #4caf50, #2e7d32);
+            color: white;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            flex: 1;
+            text-align: center;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .btn-secondary {
+            background: rgba(255, 255, 255, 0.15);
+        }
+
+        .btn-disabled {
+            background: rgba(255, 255, 255, 0.1);
+            cursor: not-allowed;
+        }
+
+        .btn-disabled:hover {
+            transform: none;
+            box-shadow: none;
+        }
+
+        .rewards-section {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 40px;
+            margin: 50px 0;
+            animation: fadeIn 1s ease;
+        }
+
+        .rewards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 25px;
+        }
+
+        .reward-card {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 15px;
+            padding: 25px;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .reward-card:hover {
+            background: rgba(255, 255, 255, 0.1);
+            transform: translateY(-5px);
+        }
+
+        .reward-card.locked {
+            opacity: 0.6;
+        }
+
+        .reward-icon {
+            font-size: 50px;
+            margin-bottom: 15px;
+            color: #ffc107;
+        }
+
+        .reward-title {
+            font-size: 1.4rem;
+            margin-bottom: 10px;
+        }
+
+        .reward-description {
+            font-size: 0.95rem;
+            margin-bottom: 20px;
+            line-height: 1.5;
+        }
+
+        .reward-points {
+            display: inline-block;
+            padding: 5px 15px;
+            background: rgba(255, 193, 7, 0.2);
+            border-radius: 20px;
+            font-size: 0.9rem;
+            margin-bottom: 15px;
+        }
+
+        .leaderboard-section {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 40px;
+            margin: 50px 0;
+            animation: fadeIn 1s ease;
+        }
+
+        .leaderboard-list {
+            margin-top: 30px;
+        }
+
+        .leaderboard-item {
+            display: flex;
+            align-items: center;
+            padding: 15px 20px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 10px;
+            margin-bottom: 10px;
+            transition: all 0.3s ease;
+        }
+
+        .leaderboard-item:hover {
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .leaderboard-item.you {
+            background: rgba(139, 195, 74, 0.2);
+            border-left: 5px solid #8bc34a;
+        }
+
+        .rank {
+            font-size: 1.2rem;
+            font-weight: 700;
+            width: 40px;
+            text-align: center;
+        }
+
+        .rank-1 {
+            color: #ffc107;
+        }
+
+        .rank-2 {
+            color: #c0c0c0;
+        }
+
+        .rank-3 {
+            color: #cd7f32;
+        }
+
+        .user-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 15px;
+            font-size: 1.2rem;
+        }
+
+        .user-info {
+            flex: 1;
+        }
+
+        .user-name {
+            font-weight: 600;
+        }
+
+        .user-points {
+            display: flex;
+            align-items: center;
+            font-size: 0.9rem;
+            margin-top: 5px;
+        }
+
+        .points-icon {
+            color: #ffc107;
+            margin-right: 5px;
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            z-index: 1000;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal-content {
+            background: linear-gradient(135deg, #2d5a2d, #3a7c3a);
+            border-radius: 20px;
+            padding: 30px;
+            max-width: 500px;
+            width: 90%;
+            text-align: center;
+            animation: slideUp 0.3s ease;
+        }
+
+        .modal-icon {
+            font-size: 60px;
+            margin-bottom: 20px;
+            color: #8bc34a;
+        }
+
+        .modal-title {
+            font-size: 1.8rem;
+            margin-bottom: 15px;
+        }
+
+        .modal-text {
+            margin-bottom: 25px;
+            line-height: 1.6;
+        }
+
+        .modal-actions {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+        }
+
+        footer {
+            text-align: center;
+            padding: 30px 0;
+            margin-top: 50px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-bottom: 20px;
+        }
+
+        .footer-links a {
+            color: #8bc34a;
+            margin: 0 15px;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            text-decoration: underline;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes slideUp {
+            from { transform: translateY(50px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        @keyframes confetti {
+            0% { transform: translateY(0) rotate(0deg); opacity: 1; }
+            100% { transform: translateY(100vh) rotate(360deg); opacity: 0; }
+        }
+
+        .confetti {
+            position: fixed;
+            width: 10px;
+            height: 10px;
+            background: #ffc107;
+            opacity: 0;
+            z-index: 1001;
+        }
+
+        @media (max-width: 768px) {
+            .page-header h2 {
+                font-size: 2.2rem;
+            }
+            
+            .challenges-grid, .rewards-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .stats-section {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="background-animation" id="backgroundAnimation"></div>
+    
+    <div class="container">
+        <header>
+            <div class="logo">
+                <i class="fas fa-trophy"></i>
+                <h1>Binify ECO Route</h1>
+            </div>
+            <a href="home.html" class="back-btn">
+                <i class="fas fa-arrow-left"></i> Back to Home
+            </a>
+        </header>
+        
+        <section class="page-header">
+            <h2>Motivation & Rewards</h2>
+            <p>Stay motivated with our clean environment challenges, track your progress, and earn rewards for your efforts. Every small action counts!</p>
+        </section>
+        
+        <div class="stats-section">
+            <div class="stat-card">
+                <i class="fas fa-leaf stat-icon"></i>
+                <div class="stat-number" id="totalPoints">1,245</div>
+                <div class="stat-label">Eco Points Earned</div>
+            </div>
+            <div class="stat-card">
+                <i class="fas fa-recycle stat-icon"></i>
+                <div class="stat-number" id="completedChallenges">42</div>
+                <div class="stat-label">Challenges Completed</div>
+            </div>
+            <div class="stat-card">
+                <i class="fas fa-award stat-icon"></i>
+                <div class="stat-number" id="unlockedBadges">8</div>
+                <div class="stat-label">Badges Unlocked</div>
+            </div>
+            <div class="stat-card">
+                <i class="fas fa-chart-line stat-icon"></i>
+                <div class="stat-number" id="globalRanking">#15</div>
+                <div class="stat-label">Global Ranking</div>
+            </div>
+        </div>
+        
+        <section class="challenges-section">
+            <div class="section-header">
+                <h3>Active Challenges</h3>
+                <p>Complete these challenges to earn points and unlock rewards. Make a difference one challenge at a time!</p>
+            </div>
+            
+            <div class="challenges-grid" id="challengesGrid">
+                <!-- Challenges will be dynamically inserted here -->
+            </div>
+        </section>
+        
+        <section class="rewards-section">
+            <div class="section-header">
+                <h3>Available Rewards</h3>
+                <p>Redeem your eco points for these exciting rewards. Your efforts deserve recognition!</p>
+            </div>
+            
+            <div class="rewards-grid" id="rewardsGrid">
+                <!-- Rewards will be dynamically inserted here -->
+            </div>
+        </section>
+        
+        <section class="leaderboard-section">
+            <div class="section-header">
+                <h3>Global Leaderboard</h3>
+                <p>See how you rank against other eco warriors worldwide. Climb the ranks by completing challenges!</p>
+            </div>
+            
+            <div class="leaderboard-list" id="leaderboardList">
+                <!-- Leaderboard items will be dynamically inserted here -->
+            </div>
+        </section>
+        
+        <footer>
+            <p>&copy; 2023 Binify ECO Route Motivation & Rewards. All rights reserved.</p>
+        </footer>
+    </div>
+
+    <!-- Progress Update Modal -->
+    <div class="modal" id="progressModal">
+        <div class="modal-content">
+            <i class="fas fa-chart-line modal-icon"></i>
+            <h3 class="modal-title">Update Progress</h3>
+            <p class="modal-text" id="progressModalText">How much progress have you made on this challenge?</p>
+            <div class="progress-container">
+                <div class="progress-label">
+                    <span>Progress</span>
+                    <span id="currentProgressValue">0%</span>
+                </div>
+                <div class="progress-bar">
+                    <div class="progress-fill" id="progressModalFill" style="width: 0%"></div>
+                </div>
+            </div>
+            <input type="range" id="progressSlider" min="0" max="100" value="0" style="width: 100%; margin: 20px 0;">
+            <div class="modal-actions">
+                <button class="btn" id="updateProgressBtn">Update Progress</button>
+                <button class="btn btn-secondary" id="cancelProgressBtn">Cancel</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Reward Redemption Modal -->
+    <div class="modal" id="rewardModal">
+        <div class="modal-content">
+            <i class="fas fa-gift modal-icon"></i>
+            <h3 class="modal-title" id="rewardModalTitle">Redeem Reward</h3>
+            <p class="modal-text" id="rewardModalText">Are you sure you want to redeem this reward?</p>
+            <div class="modal-actions">
+                <button class="btn" id="confirmRewardBtn">Yes, Redeem</button>
+                <button class="btn btn-secondary" id="cancelRewardBtn">Cancel</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Challenge Completion Modal -->
+    <div class="modal" id="completionModal">
+        <div class="modal-content">
+            <i class="fas fa-trophy modal-icon"></i>
+            <h3 class="modal-title">Challenge Complete!</h3>
+            <p class="modal-text" id="completionModalText">Congratulations! You've completed the challenge and earned <span id="pointsEarned">0</span> points!</p>
+            <div class="modal-actions">
+                <button class="btn" id="closeCompletionBtn">Awesome!</button>
+                <button class="btn btn-secondary" id="shareCompletionBtn">Share</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // User data
+        let userData = {
+            points: 1245,
+            completedChallenges: 42,
+            unlockedBadges: 8,
+            globalRanking: 15,
+            activeChallenges: {},
+            redeemedRewards: []
+        };
+
+        // Challenges data
+        const challenges = [
+            {
+                id: 1,
+                title: "Plastic-Free Week",
+                description: "Avoid single-use plastics for 7 consecutive days. Use reusable bags, bottles, and containers.",
+                points: 150,
+                progress: 100,
+                status: "completed",
+                icon: "fas fa-shopping-bag"
+            },
+            {
+                id: 2,
+                title: "Zero Car Month",
+                description: "Use alternative transportation for 30 days. Walk, bike, or use public transport instead of driving.",
+                points: 300,
+                progress: 65,
+                status: "in-progress",
+                icon: "fas fa-bicycle"
+            },
+            {
+                id: 3,
+                title: "Community Garden",
+                description: "Start or volunteer at a community garden. Grow your own food and reduce food miles.",
+                points: 200,
+                progress: 0,
+                status: "not-started",
+                icon: "fas fa-seedling"
+            },
+            {
+                id: 4,
+                title: "Energy Saver",
+                description: "Reduce your energy consumption by 20% for one month through efficient usage.",
+                points: 250,
+                progress: 30,
+                status: "in-progress",
+                icon: "fas fa-bolt"
+            },
+            {
+                id: 5,
+                title: "Water Conservation",
+                description: "Reduce your water usage by 25% for two weeks through mindful consumption.",
+                points: 180,
+                progress: 0,
+                status: "not-started",
+                icon: "fas fa-tint"
+            },
+            {
+                id: 6,
+                title: "Waste Audit",
+                description: "Conduct a waste audit of your household and implement 5 waste reduction strategies.",
+                points: 220,
+                progress: 45,
+                status: "in-progress",
+                icon: "fas fa-chart-pie"
+            }
+        ];
+
+        // Rewards data
+        const rewards = [
+            {
+                id: 1,
+                title: "Eco Warrior Badge",
+                description: "Unlock this exclusive badge for completing 10 environmental challenges.",
+                points: 500,
+                status: "available",
+                icon: "fas fa-medal"
+            },
+            {
+                id: 2,
+                title: "Plant a Tree",
+                description: "We'll plant a tree in your name for reaching 1000 eco points.",
+                points: 1000,
+                status: "available",
+                icon: "fas fa-tree"
+            },
+            {
+                id: 3,
+                title: "Eco Starter Kit",
+                description: "Get a sustainable living starter kit with reusable items.",
+                points: 1500,
+                status: "locked",
+                icon: "fas fa-gift"
+            },
+            {
+                id: 4,
+                title: "Eco Event Pass",
+                description: "Get free entry to local environmental events and workshops.",
+                points: 2000,
+                status: "locked",
+                icon: "fas fa-ticket-alt"
+            }
+        ];
+
+        // Leaderboard data
+        const leaderboard = [
+            { name: "GreenGuru", points: 4820 },
+            { name: "EcoExplorer", points: 4150 },
+            { name: "PlanetProtector", points: 3980 },
+            { name: "SustainableSam", points: 3750 },
+            { name: "RecycleRachel", points: 3620 },
+            { name: "CompostKing", points: 3480 },
+            { name: "ZeroWasteZoe", points: 3350 },
+            { name: "EcoEnthusiast", points: 3210 },
+            { name: "GreenThumb", points: 3080 },
+            { name: "EarthLover", points: 2950 },
+            { name: "ClimateCrusader", points: 2820 },
+            { name: "WasteWarrior", points: 2690 },
+            { name: "EcoAdvocate", points: 2560 },
+            { name: "SustainableSue", points: 2430 },
+            { name: "You", points: 1245 }
+        ];
+
+        // DOM Elements
+        const challengesGrid = document.getElementById('challengesGrid');
+        const rewardsGrid = document.getElementById('rewardsGrid');
+        const leaderboardList = document.getElementById('leaderboardList');
+        const progressModal = document.getElementById('progressModal');
+        const rewardModal = document.getElementById('rewardModal');
+        const completionModal = document.getElementById('completionModal');
+        const progressSlider = document.getElementById('progressSlider');
+        const currentProgressValue = document.getElementById('currentProgressValue');
+        const progressModalFill = document.getElementById('progressModalFill');
+        const progressModalText = document.getElementById('progressModalText');
+        const rewardModalTitle = document.getElementById('rewardModalTitle');
+        const rewardModalText = document.getElementById('rewardModalText');
+        const completionModalText = document.getElementById('completionModalText');
+        const pointsEarned = document.getElementById('pointsEarned');
+
+        // State variables
+        let currentChallengeId = null;
+        let currentRewardId = null;
+
+        // Initialize the page
+        function init() {
+            renderChallenges();
+            renderRewards();
+            renderLeaderboard();
+            updateStats();
+            setupEventListeners();
+            createBackgroundAnimation();
+        }
+
+        // Render challenges
+        function renderChallenges() {
+            challengesGrid.innerHTML = '';
+            
+            challenges.forEach(challenge => {
+                const challengeCard = document.createElement('div');
+                challengeCard.className = `challenge-card ${challenge.status}`;
+                challengeCard.innerHTML = `
+                    <div class="challenge-header">
+                        <div class="challenge-icon">
+                            <i class="${challenge.icon}"></i>
+                        </div>
+                        <div>
+                            <h4 class="challenge-title">${challenge.title}</h4>
+                            <div class="challenge-points">
+                                <i class="fas fa-star points-icon"></i>
+                                <span>${challenge.points} points</span>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="challenge-description">${challenge.description}</p>
+                    <div class="progress-container">
+                        <div class="progress-label">
+                            <span>Progress</span>
+                            <span>${challenge.progress}%</span>
+                        </div>
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="width: ${challenge.progress}%"></div>
+                        </div>
+                    </div>
+                    <div class="challenge-actions">
+                        ${getChallengeButton(challenge)}
+                        <button class="btn btn-secondary" data-action="details" data-id="${challenge.id}">Details</button>
+                    </div>
+                `;
+                challengesGrid.appendChild(challengeCard);
+            });
+        }
+
+        // Get appropriate button for challenge status
+        function getChallengeButton(challenge) {
+            switch(challenge.status) {
+                case 'completed':
+                    return '<button class="btn" data-action="completed" data-id="' + challenge.id + '">Completed</button>';
+                case 'in-progress':
+                    return '<button class="btn" data-action="update" data-id="' + challenge.id + '">Update Progress</button>';
+                case 'not-started':
+                    return '<button class="btn" data-action="start" data-id="' + challenge.id + '">Start Challenge</button>';
+                default:
+                    return '';
+            }
+        }
+
+        // Render rewards
+        function renderRewards() {
+            rewardsGrid.innerHTML = '';
+            
+            rewards.forEach(reward => {
+                const rewardCard = document.createElement('div');
+                rewardCard.className = `reward-card ${reward.status === 'locked' ? 'locked' : ''}`;
+                rewardCard.innerHTML = `
+                    <i class="${reward.icon} reward-icon"></i>
+                    <h4 class="reward-title">${reward.title}</h4>
+                    <p class="reward-description">${reward.description}</p>
+                    <div class="reward-points">${reward.points} points</div>
+                    ${getRewardButton(reward)}
+                `;
+                rewardsGrid.appendChild(rewardCard);
+            });
+        }
+
+        // Get appropriate button for reward status
+        function getRewardButton(reward) {
+            if (reward.status === 'redeemed') {
+                return '<button class="btn btn-disabled" disabled>Redeemed</button>';
+            } else if (reward.status === 'locked') {
+                return '<button class="btn btn-disabled" disabled>Locked</button>';
+            } else {
+                return '<button class="btn" data-action="redeem" data-id="' + reward.id + '">Redeem</button>';
+            }
+        }
+
+        // Render leaderboard
+        function renderLeaderboard() {
+            leaderboardList.innerHTML = '';
+            
+            // Sort leaderboard by points (descending)
+            const sortedLeaderboard = [...leaderboard].sort((a, b) => b.points - a.points);
+            
+            sortedLeaderboard.forEach((user, index) => {
+                const rank = index + 1;
+                const leaderboardItem = document.createElement('div');
+                leaderboardItem.className = `leaderboard-item ${user.name === 'You' ? 'you' : ''}`;
+                leaderboardItem.innerHTML = `
+                    <div class="rank ${rank === 1 ? 'rank-1' : rank === 2 ? 'rank-2' : rank === 3 ? 'rank-3' : ''}">${rank}</div>
+                    <div class="user-avatar">
+                        <i class="fas fa-user"></i>
+                    </div>
+                    <div class="user-info">
+                        <div class="user-name">${user.name}</div>
+                        <div class="user-points">
+                            <i class="fas fa-star points-icon"></i>
+                            <span>${user.points} points</span>
+                        </div>
+                    </div>
+                `;
+                leaderboardList.appendChild(leaderboardItem);
+            });
+        }
+
+        // Update stats display
+        function updateStats() {
+            document.getElementById('totalPoints').textContent = userData.points.toLocaleString();
+            document.getElementById('completedChallenges').textContent = userData.completedChallenges;
+            document.getElementById('unlockedBadges').textContent = userData.unlockedBadges;
+            document.getElementById('globalRanking').textContent = `#${userData.globalRanking}`;
+        }
+
+        // Setup event listeners
+        function setupEventListeners() {
+            // Challenge buttons
+            challengesGrid.addEventListener('click', function(e) {
+                if (e.target.classList.contains('btn')) {
+                    const action = e.target.getAttribute('data-action');
+                    const id = parseInt(e.target.getAttribute('data-id'));
+                    
+                    switch(action) {
+                        case 'start':
+                            startChallenge(id);
+                            break;
+                        case 'update':
+                            openProgressModal(id);
+                            break;
+                        case 'completed':
+                            showCompletionDetails(id);
+                            break;
+                        case 'details':
+                            showChallengeDetails(id);
+                            break;
+                    }
+                }
+            });
+
+            // Reward buttons
+            rewardsGrid.addEventListener('click', function(e) {
+                if (e.target.classList.contains('btn') && !e.target.disabled) {
+                    const action = e.target.getAttribute('data-action');
+                    const id = parseInt(e.target.getAttribute('data-id'));
+                    
+                    if (action === 'redeem') {
+                        openRewardModal(id);
+                    }
+                }
+            });
+
+            // Progress modal
+            progressSlider.addEventListener('input', function() {
+                const value = this.value;
+                currentProgressValue.textContent = `${value}%`;
+                progressModalFill.style.width = `${value}%`;
+            });
+
+            document.getElementById('updateProgressBtn').addEventListener('click', updateChallengeProgress);
+            document.getElementById('cancelProgressBtn').addEventListener('click', function() {
+                progressModal.style.display = 'none';
+            });
+
+            // Reward modal
+            document.getElementById('confirmRewardBtn').addEventListener('click', redeemReward);
+            document.getElementById('cancelRewardBtn').addEventListener('click', function() {
+                rewardModal.style.display = 'none';
+            });
+
+            // Completion modal
+            document.getElementById('closeCompletionBtn').addEventListener('click', function() {
+                completionModal.style.display = 'none';
+            });
+
+            document.getElementById('shareCompletionBtn').addEventListener('click', function() {
+                alert('Sharing feature would be implemented here! In a real app, this would share your achievement on social media.');
+                completionModal.style.display = 'none';
+            });
+        }
+
+        // Start a challenge
+        function startChallenge(id) {
+            const challenge = challenges.find(c => c.id === id);
+            if (challenge) {
+                challenge.status = 'in-progress';
+                challenge.progress = 0;
+                renderChallenges();
+                alert(`You've started the "${challenge.title}" challenge! Good luck on your eco journey.`);
+            }
+        }
+
+        // Open progress modal
+        function openProgressModal(id) {
+            const challenge = challenges.find(c => c.id === id);
+            if (challenge) {
+                currentChallengeId = id;
+                progressSlider.value = challenge.progress;
+                currentProgressValue.textContent = `${challenge.progress}%`;
+                progressModalFill.style.width = `${challenge.progress}%`;
+                progressModalText.textContent = `How much progress have you made on the "${challenge.title}" challenge?`;
+                progressModal.style.display = 'flex';
+            }
+        }
+
+        // Update challenge progress
+        function updateChallengeProgress() {
+            const challenge = challenges.find(c => c.id === currentChallengeId);
+            if (challenge) {
+                const newProgress = parseInt(progressSlider.value);
+                challenge.progress = newProgress;
+                
+                // Check if challenge is completed
+                if (newProgress === 100 && challenge.status !== 'completed') {
+                    challenge.status = 'completed';
+                    userData.points += challenge.points;
+                    userData.completedChallenges += 1;
+                    
+                    // Update global ranking based on points
+                    updateGlobalRanking();
+                    
+                    // Show completion modal
+                    pointsEarned.textContent = challenge.points;
+                    completionModalText.textContent = `Congratulations! You've completed the "${challenge.title}" challenge and earned ${challenge.points} points!`;
+                    completionModal.style.display = 'flex';
+                    
+                    // Create confetti effect
+                    createConfetti();
+                }
+                
+                renderChallenges();
+                updateStats();
+                progressModal.style.display = 'none';
+            }
+        }
+
+        // Open reward modal
+        function openRewardModal(id) {
+            const reward = rewards.find(r => r.id === id);
+            if (reward) {
+                currentRewardId = id;
+                rewardModalTitle.textContent = `Redeem: ${reward.title}`;
+                rewardModalText.textContent = `Are you sure you want to redeem "${reward.title}" for ${reward.points} points?`;
+                rewardModal.style.display = 'flex';
+            }
+        }
+
+        // Redeem reward
+        function redeemReward() {
+            const reward = rewards.find(r => r.id === currentRewardId);
+            if (reward && userData.points >= reward.points) {
+                userData.points -= reward.points;
+                reward.status = 'redeemed';
+                userData.unlockedBadges += 1;
+                
+                renderRewards();
+                updateStats();
+                rewardModal.style.display = 'none';
+                
+                alert(`Congratulations! You've successfully redeemed "${reward.title}". Thank you for your eco efforts!`);
+            } else {
+                alert("You don't have enough points to redeem this reward. Complete more challenges to earn points!");
+                rewardModal.style.display = 'none';
+            }
+        }
+
+        // Show challenge details
+        function showChallengeDetails(id) {
+            const challenge = challenges.find(c => c.id === id);
+            if (challenge) {
+                alert(`Challenge Details:\n\n${challenge.title}\n\n${challenge.description}\n\nPoints: ${challenge.points}\nStatus: ${challenge.status}\nProgress: ${challenge.progress}%`);
+            }
+        }
+
+        // Show completion details
+        function showCompletionDetails(id) {
+            const challenge = challenges.find(c => c.id === id);
+            if (challenge) {
+                alert(`Challenge Completed!\n\n${challenge.title}\n\nYou earned ${challenge.points} points for completing this challenge. Great job!`);
+            }
+        }
+
+        // Update global ranking based on points
+        function updateGlobalRanking() {
+            // In a real app, this would be calculated based on all users' points
+            // For this demo, we'll simulate a ranking improvement
+            if (userData.points > 2000) {
+                userData.globalRanking = 10;
+            } else if (userData.points > 1500) {
+                userData.globalRanking = 12;
+            } else if (userData.points > 1300) {
+                userData.globalRanking = 14;
+            }
+            
+            // Update leaderboard
+            const youIndex = leaderboard.findIndex(user => user.name === 'You');
+            if (youIndex !== -1) {
+                leaderboard[youIndex].points = userData.points;
+            }
+            renderLeaderboard();
+        }
+
+        // Create confetti effect
+        function createConfetti() {
+            const colors = ['#8bc34a', '#4caf50', '#ffc107', '#ff9800', '#f44336'];
+            const container = document.body;
+            
+            for (let i = 0; i < 100; i++) {
+                const confetti = document.createElement('div');
+                confetti.className = 'confetti';
+                confetti.style.left = Math.random() * 100 + 'vw';
+                confetti.style.background = colors[Math.floor(Math.random() * colors.length)];
+                confetti.style.animation = `confetti ${Math.random() * 3 + 2}s linear forwards`;
+                confetti.style.animationDelay = Math.random() * 2 + 's';
+                container.appendChild(confetti);
+                
+                // Remove confetti after animation
+                setTimeout(() => {
+                    confetti.remove();
+                }, 5000);
+            }
+        }
+
+        // Create background animation
+        function createBackgroundAnimation() {
+            const backgroundAnimation = document.getElementById('backgroundAnimation');
+            
+            // Create bubbles
+            for (let i = 0; i < 15; i++) {
+                const bubble = document.createElement('div');
+                bubble.classList.add('bubble');
+                const size = Math.random() * 60 + 20;
+                bubble.style.width = `${size}px`;
+                bubble.style.height = `${size}px`;
+                bubble.style.left = `${Math.random() * 100}%`;
+                bubble.style.top = `${Math.random() * 100}%`;
+                bubble.style.animationDelay = `${Math.random() * 15}s`;
+                backgroundAnimation.appendChild(bubble);
+            }
+            
+            // Create leaves
+            for (let i = 0; i < 10; i++) {
+                const leaf = document.createElement('div');
+                leaf.classList.add('leaf');
+                leaf.innerHTML = '<i class="fas fa-leaf"></i>';
+                leaf.style.left = `${Math.random() * 100}%`;
+                leaf.style.animationDelay = `${Math.random() * 20}s`;
+                backgroundAnimation.appendChild(leaf);
+            }
+        }
+
+        // Initialize the page
+        init();
+    </script>
+</body>
+</html>

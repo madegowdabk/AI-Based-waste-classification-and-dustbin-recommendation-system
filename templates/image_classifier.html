@@ -1,0 +1,1600 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Waste Image Classifier | Binify ECO Route</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #1a2f1a, #2d5a2d, #3a7c3a);
+            color: #fff;
+            min-height: 100vh;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        .background-animation {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            overflow: hidden;
+        }
+
+        .bubble {
+            position: absolute;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.1);
+            animation: float 15s infinite ease-in-out;
+        }
+
+        .leaf {
+            position: absolute;
+            font-size: 24px;
+            color: rgba(139, 195, 74, 0.5);
+            animation: fall 20s infinite linear;
+        }
+
+        @keyframes float {
+
+            0%,
+            100% {
+                transform: translateY(0) rotate(0deg);
+            }
+
+            50% {
+                transform: translateY(-20px) rotate(180deg);
+            }
+        }
+
+        @keyframes fall {
+            0% {
+                transform: translateY(-100px) rotate(0deg);
+            }
+
+            100% {
+                transform: translateY(100vh) rotate(360deg);
+            }
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
+            animation: fadeIn 1s ease;
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .logo {
+            width: 50px;
+            height: 50px;
+            background: white;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 0 0 15px rgba(139, 195, 74, 0.5);
+        }
+
+        .logo i {
+            font-size: 24px;
+            color: #4caf50;
+        }
+
+        .logo-text h1 {
+            font-size: 2rem;
+            background: linear-gradient(to right, #8bc34a, #4caf50, #2e7d32);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 5px;
+        }
+
+        .logo-text p {
+            font-size: 0.9rem;
+            opacity: 0.8;
+        }
+
+        .header-buttons {
+            display: flex;
+            gap: 15px;
+        }
+
+        .back-btn, .tracking-btn {
+            padding: 10px 20px;
+            background: rgba(255, 255, 255, 0.15);
+            border: none;
+            border-radius: 50px;
+            color: white;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 600;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .back-btn:hover, .tracking-btn:hover {
+            background: rgba(255, 255, 255, 0.25);
+            transform: translateY(-2px);
+        }
+
+        .page-header {
+            text-align: center;
+            padding: 40px 0;
+            animation: slideUp 1s ease;
+        }
+
+        .page-header h2 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            text-shadow: 0 0 15px rgba(139, 195, 74, 0.7);
+        }
+
+        .page-header p {
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+
+        .classifier-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            margin: 40px 0;
+        }
+
+        @media (max-width: 968px) {
+            .classifier-container {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .input-section {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 30px;
+            animation: fadeIn 1s ease;
+        }
+
+        .input-methods {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 25px;
+        }
+
+        .input-btn {
+            flex: 1;
+            padding: 15px;
+            background: rgba(255, 255, 255, 0.15);
+            border: none;
+            border-radius: 15px;
+            color: white;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .input-btn:hover {
+            background: rgba(255, 255, 255, 0.25);
+            transform: translateY(-3px);
+        }
+
+        .input-btn.active {
+            background: #4caf50;
+            box-shadow: 0 5px 15px rgba(76, 175, 80, 0.4);
+        }
+
+        .upload-area {
+            border: 2px dashed rgba(255, 255, 255, 0.3);
+            border-radius: 15px;
+            padding: 40px 20px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-bottom: 20px;
+        }
+
+        .upload-area:hover {
+            border-color: #8bc34a;
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        .upload-icon {
+            font-size: 50px;
+            margin-bottom: 15px;
+            color: #8bc34a;
+        }
+
+        .camera-preview {
+            width: 100%;
+            height: 300px;
+            background: rgba(0, 0, 0, 0.2);
+            border-radius: 15px;
+            margin-bottom: 20px;
+            display: none;
+            position: relative;
+            overflow: hidden;
+        }
+
+        #cameraVideo,
+        #cameraCanvas {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 15px;
+        }
+
+        .camera-controls {
+            display: flex;
+            gap: 10px;
+            margin-top: 15px;
+        }
+
+        .capture-btn {
+            flex: 1;
+            padding: 12px;
+            background: linear-gradient(to right, #4caf50, #2e7d32);
+            border: none;
+            border-radius: 10px;
+            color: white;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .capture-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .image-preview {
+            width: 100%;
+            max-height: 300px;
+            border-radius: 15px;
+            object-fit: contain;
+            background: rgba(0, 0, 0, 0.2);
+            display: none;
+        }
+
+        .analyze-btn {
+            width: 100%;
+            padding: 15px;
+            background: linear-gradient(to right, #4caf50, #2e7d32);
+            border: none;
+            border-radius: 15px;
+            color: white;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .analyze-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .analyze-btn:disabled {
+            background: rgba(255, 255, 255, 0.15);
+            cursor: not-allowed;
+            transform: none;
+            box-shadow: none;
+        }
+
+        .result-section {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 30px;
+            animation: fadeIn 1s ease;
+        }
+
+        .result-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 25px;
+        }
+
+        .result-icon {
+            font-size: 40px;
+            margin-right: 15px;
+        }
+
+        .wet-waste .result-icon {
+            color: #2196F3;
+        }
+
+        .dry-waste .result-icon {
+            color: #FF9800;
+        }
+
+        .mixed-waste .result-icon {
+            color: #9C27B0;
+        }
+
+        .non-waste .result-icon {
+            color: #F44336;
+        }
+
+        .result-title {
+            font-size: 1.8rem;
+        }
+
+        .waste-type-badge {
+            display: inline-block;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-weight: 600;
+            margin-left: 15px;
+        }
+
+        .wet-badge {
+            background: rgba(33, 150, 243, 0.2);
+            color: #2196F3;
+        }
+
+        .dry-badge {
+            background: rgba(255, 152, 0, 0.2);
+            color: #FF9800;
+        }
+
+        .mixed-badge {
+            background: rgba(156, 39, 176, 0.2);
+            color: #9C27B0;
+        }
+
+        .non-waste-badge {
+            background: rgba(244, 67, 54, 0.2);
+            color: #F44336;
+        }
+
+        .confidence-meter {
+            margin: 20px 0;
+        }
+
+        .confidence-label {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 8px;
+        }
+
+        .confidence-bar {
+            height: 10px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .confidence-fill {
+            height: 100%;
+            border-radius: 10px;
+            transition: width 1s ease;
+        }
+
+        .wet-confidence .confidence-fill {
+            background: linear-gradient(to right, #2196F3, #03A9F4);
+        }
+
+        .dry-confidence .confidence-fill {
+            background: linear-gradient(to right, #FF9800, #FFB74D);
+        }
+
+        .dustbin-recommendation {
+            background: rgba(0, 0, 0, 0.2);
+            border-radius: 15px;
+            padding: 20px;
+            margin-top: 20px;
+        }
+
+        .dustbin-title {
+            font-size: 1.3rem;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .dustbin-colors {
+            display: flex;
+            gap: 15px;
+            margin-top: 15px;
+        }
+
+        .dustbin-color {
+            flex: 1;
+            text-align: center;
+            padding: 15px;
+            border-radius: 10px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .green-dustbin {
+            background: rgba(76, 175, 80, 0.2);
+            border: 1px solid #4CAF50;
+        }
+
+        .blue-dustbin {
+            background: rgba(33, 150, 243, 0.2);
+            border: 1px solid #2196F3;
+        }
+
+        .black-dustbin {
+            background: rgba(97, 97, 97, 0.2);
+            border: 1px solid #616161;
+        }
+
+        .dustbin-icon {
+            font-size: 40px;
+        }
+
+        .dustbin-name {
+            font-weight: 600;
+            font-size: 1.1rem;
+        }
+
+        .dustbin-description {
+            font-size: 0.9rem;
+            opacity: 0.9;
+        }
+
+        .report-section {
+            margin-top: 30px;
+        }
+
+        .report-title {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .report-content {
+            background: rgba(0, 0, 0, 0.2);
+            border-radius: 15px;
+            padding: 20px;
+            max-height: 300px;
+            overflow-y: auto;
+        }
+
+        .waste-components {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .component-list {
+            background: rgba(0, 0, 0, 0.2);
+            border-radius: 10px;
+            padding: 15px;
+        }
+
+        .component-title {
+            font-size: 1.1rem;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .component-item {
+            padding: 8px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .component-item:last-child {
+            border-bottom: none;
+        }
+
+        .component-name {
+            flex: 1;
+        }
+
+        .component-confidence {
+            color: #8bc34a;
+            font-weight: 600;
+        }
+
+        .awareness-section {
+            margin-top: 50px;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 30px;
+            animation: fadeIn 1s ease;
+        }
+
+        .awareness-header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .awareness-header h3 {
+            font-size: 2.2rem;
+            margin-bottom: 10px;
+            background: linear-gradient(to right, #8bc34a, #4caf50);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .awareness-header p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+
+        .awareness-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+        }
+
+        .awareness-card {
+            background: rgba(0, 0, 0, 0.2);
+            border-radius: 15px;
+            padding: 25px;
+            transition: transform 0.3s ease;
+        }
+
+        .awareness-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .awareness-card-header {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 15px;
+        }
+
+        .awareness-card-icon {
+            font-size: 30px;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .wet-icon {
+            background: rgba(33, 150, 243, 0.2);
+            color: #2196F3;
+        }
+
+        .dry-icon {
+            background: rgba(255, 152, 0, 0.2);
+            color: #FF9800;
+        }
+
+        .mixed-icon {
+            background: rgba(156, 39, 176, 0.2);
+            color: #9C27B0;
+        }
+
+        .awareness-card-title {
+            font-size: 1.4rem;
+            font-weight: 600;
+        }
+
+        .awareness-card-content ul {
+            padding-left: 20px;
+            margin-top: 10px;
+        }
+
+        .awareness-card-content li {
+            margin-bottom: 8px;
+            line-height: 1.5;
+        }
+
+        .loading-indicator {
+            display: none;
+            text-align: center;
+            padding: 20px;
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 15px;
+            margin-top: 20px;
+        }
+
+        .loading-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .loading-spinner {
+            width: 60px;
+            height: 60px;
+            border: 4px solid rgba(255, 255, 255, 0.3);
+            border-top: 4px solid #8bc34a;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        .loading-text {
+            font-size: 1.1rem;
+            color: #8bc34a;
+            font-weight: 600;
+        }
+
+        .loading-dots {
+            display: flex;
+            gap: 5px;
+            margin-top: 10px;
+        }
+
+        .loading-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: #8bc34a;
+            animation: pulse 1.5s infinite ease-in-out;
+        }
+
+        .loading-dot:nth-child(2) {
+            animation-delay: 0.2s;
+        }
+
+        .loading-dot:nth-child(3) {
+            animation-delay: 0.4s;
+        }
+
+        .message {
+            padding: 15px;
+            border-radius: 10px;
+            margin-top: 20px;
+            text-align: center;
+            display: none;
+        }
+
+        .error {
+            background: rgba(244, 67, 54, 0.2);
+            border: 1px solid #f44336;
+            color: #ff8a80;
+        }
+
+        .success {
+            background: rgba(76, 175, 80, 0.2);
+            border: 1px solid #4caf50;
+            color: #a5d6a7;
+        }
+
+        .info {
+            background: rgba(33, 150, 243, 0.2);
+            border: 1px solid #2196F3;
+            color: #90CAF9;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+
+        @keyframes slideUp {
+            from {
+                transform: translateY(50px);
+                opacity: 0;
+            }
+
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        @keyframes spin {
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        @keyframes pulse {
+
+            0%,
+            100% {
+                transform: scale(1);
+                opacity: 1;
+            }
+
+            50% {
+                transform: scale(1.2);
+                opacity: 0.7;
+            }
+        }
+
+        footer {
+            text-align: center;
+            padding: 30px 0;
+            margin-top: 50px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .footer-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .footer-logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .footer-logo .logo {
+            width: 30px;
+            height: 30px;
+        }
+
+        .footer-logo span {
+            font-size: 1.2rem;
+            font-weight: 600;
+            background: linear-gradient(to right, #8bc34a, #4caf50);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="background-animation" id="backgroundAnimation"></div>
+
+    <div class="container">
+        <header>
+            <div class="logo-container">
+                <div class="logo">
+                    <i class="fas fa-recycle"></i>
+                </div>
+                <div class="logo-text">
+                    <h1>Binify ECO Route</h1>
+                    <p>Smart Waste Management</p>
+                </div>
+            </div>
+            <div class="header-buttons">
+                <a href="#" class="back-btn">
+                    <i class="fas fa-arrow-left"></i> Back to Home
+                </a>
+                <a href="dustbin_tracking.html" class="tracking-btn">
+                    <i class="fas fa-map-marker-alt"></i> Dustbin Tracking
+                </a>
+            </div>
+        </header>
+
+        <section class="page-header">
+            <h2>Waste Image Classifier</h2>
+            <p>Upload or capture an image to identify whether the waste is wet or dry, and get a detailed analysis
+                report with disposal recommendations.</p>
+        </section>
+
+        <div class="classifier-container">
+            <div class="input-section">
+                <div class="input-methods">
+                    <button class="input-btn active" id="uploadBtn">
+                        <i class="fas fa-upload"></i> Upload Image
+                    </button>
+                    <button class="input-btn" id="cameraBtn">
+                        <i class="fas fa-camera"></i> Use Camera
+                    </button>
+                </div>
+
+                <div id="uploadArea" class="upload-area">
+                    <i class="fas fa-cloud-upload-alt upload-icon"></i>
+                    <h3>Upload Waste Image</h3>
+                    <p>Click here or drag and drop an image file</p>
+                    <input type="file" id="imageUpload" accept="image/*" style="display: none;">
+                </div>
+
+                <div id="cameraArea" class="camera-area" style="display: none;">
+                    <div class="camera-preview" id="cameraPreview">
+                        <video id="cameraVideo" autoplay playsinline></video>
+                        <canvas id="cameraCanvas" style="display: none;"></canvas>
+                    </div>
+                    <div class="camera-controls">
+                        <button class="capture-btn" id="captureBtn">
+                            <i class="fas fa-camera"></i> Capture Image
+                        </button>
+                        <button class="capture-btn" id="retakeBtn" style="display: none;">
+                            <i class="fas fa-redo"></i> Retake
+                        </button>
+                    </div>
+                </div>
+
+                <img id="imagePreview" class="image-preview" alt="Image preview">
+
+                <button class="analyze-btn" id="analyzeBtn" disabled>
+                    <i class="fas fa-search"></i> Analyze Waste
+                </button>
+
+                <div class="loading-indicator" id="loadingIndicator">
+                    <div class="loading-content">
+                        <div class="loading-spinner"></div>
+                        <div class="loading-text">Analyzing Waste Image</div>
+                        <div class="loading-dots">
+                            <div class="loading-dot"></div>
+                            <div class="loading-dot"></div>
+                            <div class="loading-dot"></div>
+                        </div>
+                        <p>This may take a few seconds. Please wait...</p>
+                    </div>
+                </div>
+
+                <div class="message error" id="errorMessage"></div>
+                <div class="message info" id="infoMessage" style="display: none;"></div>
+            </div>
+
+            <div class="result-section">
+                <div class="result-header">
+                    <i class="fas fa-question-circle result-icon"></i>
+                    <h3 class="result-title">Analysis Result</h3>
+                    <span class="waste-type-badge" id="wasteTypeBadge">Unknown</span>
+                </div>
+
+                <p id="resultDescription">Upload or capture an image to analyze waste composition.</p>
+
+                <div class="confidence-meter wet-confidence" style="display: none;" id="wetConfidence">
+                    <div class="confidence-label">
+                        <span>Wet Waste Confidence</span>
+                        <span id="wetConfidenceValue">0%</span>
+                    </div>
+                    <div class="confidence-bar">
+                        <div class="confidence-fill" id="wetConfidenceFill" style="width: 0%"></div>
+                    </div>
+                </div>
+
+                <div class="confidence-meter dry-confidence" style="display: none;" id="dryConfidence">
+                    <div class="confidence-label">
+                        <span>Dry Waste Confidence</span>
+                        <span id="dryConfidenceValue">0%</span>
+                    </div>
+                    <div class="confidence-bar">
+                        <div class="confidence-fill" id="dryConfidenceFill" style="width: 0%"></div>
+                    </div>
+                </div>
+
+                <div class="dustbin-recommendation" id="dustbinRecommendation" style="display: none;">
+                    <h4 class="dustbin-title">
+                        <i class="fas fa-trash-alt"></i> Recommended Disposal Method
+                    </h4>
+                    <p id="dustbinDescription">Based on the analysis, here's the recommended disposal method:</p>
+                    <div class="dustbin-colors">
+                        <div class="dustbin-color green-dustbin" id="greenDustbin">
+                            <i class="fas fa-trash dustbin-icon"></i>
+                            <div class="dustbin-name">Green Dustbin</div>
+                            <div class="dustbin-description" id="greenDustbinDesc">For wet/organic waste</div>
+                        </div>
+                        <div class="dustbin-color blue-dustbin" id="blueDustbin">
+                            <i class="fas fa-trash dustbin-icon"></i>
+                            <div class="dustbin-name">Blue Dustbin</div>
+                            <div class="dustbin-description" id="blueDustbinDesc">For dry/recyclable waste</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="report-section">
+                    <h4 class="report-title">
+                        <i class="fas fa-file-alt"></i> Detailed Analysis Report
+                    </h4>
+                    <div class="report-content" id="reportContent">
+                        <p>No analysis report available yet. Please analyze an image first.</p>
+                    </div>
+                </div>
+
+                <div class="waste-components" id="wasteComponents" style="display: none;">
+                    <div class="component-list">
+                        <h5 class="component-title">
+                            <i class="fas fa-tint" style="color: #2196F3;"></i> Wet Waste Items
+                        </h5>
+                        <div id="wetComponentsList">
+                            <!-- Wet components will be added here -->
+                        </div>
+                    </div>
+                    <div class="component-list">
+                        <h5 class="component-title">
+                            <i class="fas fa-leaf" style="color: #FF9800;"></i> Dry Waste Items
+                        </h5>
+                        <div id="dryComponentsList">
+                            <!-- Dry components will be added here -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="awareness-section">
+            <div class="awareness-header">
+                <h3>Waste Segregation Awareness</h3>
+                <p>Learn about different types of waste and proper disposal methods</p>
+            </div>
+            <div class="awareness-content">
+                <div class="awareness-card">
+                    <div class="awareness-card-header">
+                        <div class="awareness-card-icon wet-icon">
+                            <i class="fas fa-tint"></i>
+                        </div>
+                        <h4 class="awareness-card-title">Wet Waste</h4>
+                    </div>
+                    <div class="awareness-card-content">
+                        <p>Also known as organic or biodegradable waste. These are items that decompose naturally.</p>
+                        <ul>
+                            <li>Food scraps and leftovers</li>
+                            <li>Vegetable and fruit peels</li>
+                            <li>Tea leaves and coffee grounds</li>
+                            <li>Eggshells and nutshells</li>
+                            <li>Garden waste (leaves, grass)</li>
+                        </ul>
+                        <p><strong>Disposal:</strong> Use <span style="color: #4CAF50;">Green Dustbin</span> for composting or biogas generation.</p>
+                    </div>
+                </div>
+                <div class="awareness-card">
+                    <div class="awareness-card-header">
+                        <div class="awareness-card-icon dry-icon">
+                            <i class="fas fa-leaf"></i>
+                        </div>
+                        <h4 class="awareness-card-title">Dry Waste</h4>
+                    </div>
+                    <div class="awareness-card-content">
+                        <p>Also known as recyclable waste. These items can be processed and reused.</p>
+                        <ul>
+                            <li>Paper and cardboard</li>
+                            <li>Plastic containers and bottles</li>
+                            <li>Glass bottles and jars</li>
+                            <li>Metal cans and foils</li>
+                            <li>Textiles and clothing</li>
+                        </ul>
+                        <p><strong>Disposal:</strong> Use <span style="color: #2196F3;">Blue Dustbin</span> for recycling facilities.</p>
+                    </div>
+                </div>
+                <div class="awareness-card">
+                    <div class="awareness-card-header">
+                        <div class="awareness-card-icon mixed-icon">
+                            <i class="fas fa-exclamation-triangle"></i>
+                        </div>
+                        <h4 class="awareness-card-title">Hazardous Waste</h4>
+                    </div>
+                    <div class="awareness-card-content">
+                        <p>Items that are potentially dangerous to health or environment.</p>
+                        <ul>
+                            <li>Batteries and electronics</li>
+                            <li>Medicines and medical waste</li>
+                            <li>Chemicals and pesticides</li>
+                            <li>Fluorescent bulbs and tubes</li>
+                            <li>Paints and solvents</li>
+                        </ul>
+                        <p><strong>Disposal:</strong> Use designated collection points or <span style="color: #616161;">Black Dustbin</span> for hazardous waste.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <footer>
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <div class="logo">
+                        <i class="fas fa-recycle"></i>
+                    </div>
+                    <span>Binify ECO Route</span>
+                </div>
+                <p>&copy; 2023 Binify ECO Route Waste Management Solutions. All rights reserved.</p>
+            </div>
+        </footer>
+    </div>
+
+    <script>
+        // DOM Elements
+        const uploadBtn = document.getElementById('uploadBtn');
+        const cameraBtn = document.getElementById('cameraBtn');
+        const uploadArea = document.getElementById('uploadArea');
+        const cameraArea = document.getElementById('cameraArea');
+        const imageUpload = document.getElementById('imageUpload');
+        const imagePreview = document.getElementById('imagePreview');
+        const cameraPreview = document.getElementById('cameraPreview');
+        const cameraVideo = document.getElementById('cameraVideo');
+        const cameraCanvas = document.getElementById('cameraCanvas');
+        const captureBtn = document.getElementById('captureBtn');
+        const retakeBtn = document.getElementById('retakeBtn');
+        const analyzeBtn = document.getElementById('analyzeBtn');
+        const loadingIndicator = document.getElementById('loadingIndicator');
+        const errorMessage = document.getElementById('errorMessage');
+        const infoMessage = document.getElementById('infoMessage');
+
+        // Result elements
+        const wasteTypeBadge = document.getElementById('wasteTypeBadge');
+        const resultDescription = document.getElementById('resultDescription');
+        const wetConfidence = document.getElementById('wetConfidence');
+        const dryConfidence = document.getElementById('dryConfidence');
+        const wetConfidenceValue = document.getElementById('wetConfidenceValue');
+        const dryConfidenceValue = document.getElementById('dryConfidenceValue');
+        const wetConfidenceFill = document.getElementById('wetConfidenceFill');
+        const dryConfidenceFill = document.getElementById('dryConfidenceFill');
+        const dustbinRecommendation = document.getElementById('dustbinRecommendation');
+        const dustbinDescription = document.getElementById('dustbinDescription');
+        const greenDustbin = document.getElementById('greenDustbin');
+        const blueDustbin = document.getElementById('blueDustbin');
+        const greenDustbinDesc = document.getElementById('greenDustbinDesc');
+        const blueDustbinDesc = document.getElementById('blueDustbinDesc');
+        const reportContent = document.getElementById('reportContent');
+        const wasteComponents = document.getElementById('wasteComponents');
+        const wetComponentsList = document.getElementById('wetComponentsList');
+        const dryComponentsList = document.getElementById('dryComponentsList');
+
+        // Gemini API configuration
+        const API_KEY = 'AIzaSyB0Sy91VJm-IH_PPKXN1lYFN0HpokHb0Z4';
+        const API_URL = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${API_KEY}`;
+
+        // State variables
+        let currentImageData = null;
+        let stream = null;
+
+        // Event Listeners
+        uploadBtn.addEventListener('click', () => {
+            uploadBtn.classList.add('active');
+            cameraBtn.classList.remove('active');
+            uploadArea.style.display = 'block';
+            cameraArea.style.display = 'none';
+            resetAnalysis();
+        });
+
+        cameraBtn.addEventListener('click', () => {
+            cameraBtn.classList.add('active');
+            uploadBtn.classList.remove('active');
+            uploadArea.style.display = 'none';
+            cameraArea.style.display = 'block';
+            startCamera();
+            resetAnalysis();
+        });
+
+        uploadArea.addEventListener('click', () => {
+            imageUpload.click();
+        });
+
+        uploadArea.addEventListener('dragover', (e) => {
+            e.preventDefault();
+            uploadArea.style.borderColor = '#8bc34a';
+            uploadArea.style.background = 'rgba(255, 255, 255, 0.1)';
+        });
+
+        uploadArea.addEventListener('dragleave', () => {
+            uploadArea.style.borderColor = 'rgba(255, 255, 255, 0.3)';
+            uploadArea.style.background = 'transparent';
+        });
+
+        uploadArea.addEventListener('drop', (e) => {
+            e.preventDefault();
+            uploadArea.style.borderColor = 'rgba(255, 255, 255, 0.3)';
+            uploadArea.style.background = 'transparent';
+
+            if (e.dataTransfer.files.length > 0) {
+                const file = e.dataTransfer.files[0];
+                if (file.type.startsWith('image/')) {
+                    handleImageFile(file);
+                } else {
+                    showError('Please upload an image file (JPEG, PNG, etc.)');
+                }
+            }
+        });
+
+        imageUpload.addEventListener('change', (e) => {
+            if (e.target.files.length > 0) {
+                handleImageFile(e.target.files[0]);
+            }
+        });
+
+        captureBtn.addEventListener('click', captureImage);
+        retakeBtn.addEventListener('click', retakeImage);
+        analyzeBtn.addEventListener('click', analyzeImage);
+
+        // Functions
+        function handleImageFile(file) {
+            const reader = new FileReader();
+            reader.onload = (e) => {
+                imagePreview.src = e.target.result;
+                imagePreview.style.display = 'block';
+                currentImageData = e.target.result;
+                analyzeBtn.disabled = false;
+                hideMessages();
+            };
+            reader.readAsDataURL(file);
+        }
+
+        async function startCamera() {
+            try {
+                stream = await navigator.mediaDevices.getUserMedia({ video: true });
+                cameraVideo.srcObject = stream;
+                cameraPreview.style.display = 'block';
+                captureBtn.style.display = 'block';
+                retakeBtn.style.display = 'none';
+            } catch (err) {
+                console.error('Error accessing camera:', err);
+                showError('Unable to access camera. Please check permissions and try again.');
+            }
+        }
+
+        function captureImage() {
+            const context = cameraCanvas.getContext('2d');
+            cameraCanvas.width = cameraVideo.videoWidth;
+            cameraCanvas.height = cameraVideo.videoHeight;
+            context.drawImage(cameraVideo, 0, 0);
+
+            currentImageData = cameraCanvas.toDataURL('image/jpeg');
+            imagePreview.src = currentImageData;
+            imagePreview.style.display = 'block';
+
+            // Stop camera stream
+            if (stream) {
+                stream.getTracks().forEach(track => track.stop());
+            }
+
+            captureBtn.style.display = 'none';
+            retakeBtn.style.display = 'block';
+            analyzeBtn.disabled = false;
+        }
+
+        function retakeImage() {
+            imagePreview.style.display = 'none';
+            currentImageData = null;
+            analyzeBtn.disabled = true;
+            startCamera();
+            hideMessages();
+        }
+
+        function resetAnalysis() {
+            currentImageData = null;
+            imagePreview.style.display = 'none';
+            analyzeBtn.disabled = true;
+
+            // Reset result display
+            wasteTypeBadge.textContent = 'Unknown';
+            wasteTypeBadge.className = 'waste-type-badge';
+            resultDescription.textContent = 'Upload or capture an image to analyze waste composition.';
+            wetConfidence.style.display = 'none';
+            dryConfidence.style.display = 'none';
+            dustbinRecommendation.style.display = 'none';
+            reportContent.innerHTML = '<p>No analysis report available yet. Please analyze an image first.</p>';
+            wasteComponents.style.display = 'none';
+            hideMessages();
+
+            // Stop camera if active
+            if (stream) {
+                stream.getTracks().forEach(track => track.stop());
+                stream = null;
+            }
+        }
+
+        async function analyzeImage() {
+            if (!currentImageData) {
+                showError('Please select or capture an image first.');
+                return;
+            }
+
+            // Show loading animation
+            loadingIndicator.style.display = 'block';
+            analyzeBtn.disabled = true;
+            hideMessages();
+
+            try {
+                // Convert base64 to blob
+                const base64Response = await fetch(currentImageData);
+                const blob = await base64Response.blob();
+
+                // Convert blob to base64 for Gemini API
+                const reader = new FileReader();
+                reader.readAsDataURL(blob);
+                reader.onloadend = async () => {
+                    const base64data = reader.result.split(',')[1];
+
+                    // Prepare prompt for Gemini API
+                    const prompt = `
+                    Analyze this image and determine if it contains waste materials or living beings (humans or animals).
+                    
+                    If the image contains waste, provide:
+                    1. Classification: Is this primarily wet waste, dry waste, or mixed waste?
+                    2. Confidence percentage for wet and dry waste classification (should add up to 100%)
+                    3. List of identifiable components with their waste type (wet/dry) and confidence percentages
+                    4. Detailed report explaining the composition and proper disposal recommendations
+                    5. Which color dustbin should be used for disposal (green for wet, blue for dry, both for mixed)
+                    
+                    If the image contains living beings (humans or animals), provide:
+                    - A message explaining that the image contains living beings and cannot be analyzed for waste composition
+                    
+                    If the image does NOT contain waste or living beings, provide:
+                    - A description of what is in the image
+                    - A message explaining that this is not waste and cannot be analyzed for waste composition
+                    
+                    Format your response as JSON with this structure:
+                    {
+                      "isWaste": true/false,
+                      "hasLivingBeings": true/false,
+                      "classification": "wet|dry|mixed|not_waste|living_beings",
+                      "confidence": {
+                        "wet": 0-100,
+                        "dry": 0-100
+                      },
+                      "components": [
+                        {
+                          "name": "item name",
+                          "type": "wet|dry",
+                          "confidence": 0-100
+                        }
+                      ],
+                      "dustbin": "green|blue|both",
+                      "report": "Detailed analysis and disposal recommendations or explanation of non-waste content",
+                      "description": "Description of what is in the image"
+                    }
+                    `;
+
+                    const requestBody = {
+                        contents: [
+                            {
+                                parts: [
+                                    { text: prompt },
+                                    {
+                                        inline_data: {
+                                            mime_type: "image/jpeg",
+                                            data: base64data
+                                        }
+                                    }
+                                ]
+                            }
+                        ],
+                        generationConfig: {
+                            temperature: 0.1,
+                            topK: 32,
+                            topP: 1,
+                            maxOutputTokens: 2048,
+                        }
+                    };
+
+                    console.log("Sending request to Gemini API...");
+
+                    const response = await fetch(API_URL, {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify(requestBody)
+                    });
+
+                    console.log("Response status:", response.status);
+
+                    if (!response.ok) {
+                        const errorText = await response.text();
+                        console.error("Error response:", errorText);
+                        throw new Error(`API request failed with status ${response.status}: ${errorText}`);
+                    }
+
+                    const data = await response.json();
+                    console.log("API Response:", data);
+
+                    // Process the response
+                    if (data.candidates && data.candidates[0] && data.candidates[0].content) {
+                        const responseText = data.candidates[0].content.parts[0].text;
+                        console.log("Response text:", responseText);
+
+                        // Extract JSON from response
+                        const jsonMatch = responseText.match(/\{[\s\S]*\}/);
+                        if (jsonMatch) {
+                            try {
+                                const result = JSON.parse(jsonMatch[0]);
+                                console.log("Parsed result:", result);
+                                displayResults(result);
+                            } catch (parseError) {
+                                console.error('JSON parse error:', parseError);
+                                // Fallback: try to extract information from text response
+                                handleTextResponse(responseText);
+                            }
+                        } else {
+                            // Handle text response if JSON not found
+                            handleTextResponse(responseText);
+                        }
+                    } else {
+                        throw new Error('No content in API response');
+                    }
+                };
+            } catch (error) {
+                console.error('Analysis error:', error);
+                showError('Failed to analyze image. Please try again. Error: ' + error.message);
+                // Use mock data as fallback for demonstration
+                const mockResult = generateMockResult();
+                displayResults(mockResult);
+            } finally {
+                // Hide loading animation when done
+                loadingIndicator.style.display = 'none';
+                analyzeBtn.disabled = false;
+            }
+        }
+
+        function handleTextResponse(responseText) {
+            // Fallback display for non-JSON responses
+            const result = {
+                isWaste: true,
+                hasLivingBeings: false,
+                classification: "mixed",
+                confidence: {
+                    wet: 50,
+                    dry: 50
+                },
+                dustbin: "both",
+                components: [],
+                report: responseText,
+                description: "AI analysis completed"
+            };
+            displayResults(result);
+        }
+
+        function generateMockResult() {
+            // Generate random mock data for demonstration
+            const wasteTypes = ['wet', 'dry', 'mixed'];
+            const selectedType = wasteTypes[Math.floor(Math.random() * wasteTypes.length)];
+
+            let wetConf, dryConf, dustbin;
+            if (selectedType === 'wet') {
+                wetConf = Math.floor(Math.random() * 30) + 70; // 70-100%
+                dryConf = 100 - wetConf;
+                dustbin = "green";
+            } else if (selectedType === 'dry') {
+                dryConf = Math.floor(Math.random() * 30) + 70; // 70-100%
+                wetConf = 100 - dryConf;
+                dustbin = "blue";
+            } else {
+                wetConf = Math.floor(Math.random() * 40) + 30; // 30-70%
+                dryConf = 100 - wetConf;
+                dustbin = "both";
+            }
+
+            const wetComponents = [
+                { name: "Food Scraps", confidence: Math.floor(Math.random() * 30) + 70 },
+                { name: "Vegetable Peels", confidence: Math.floor(Math.random() * 30) + 60 },
+                { name: "Fruit Waste", confidence: Math.floor(Math.random() * 30) + 50 }
+            ];
+
+            const dryComponents = [
+                { name: "Plastic Bottle", confidence: Math.floor(Math.random() * 30) + 70 },
+                { name: "Paper", confidence: Math.floor(Math.random() * 30) + 60 },
+                { name: "Cardboard", confidence: Math.floor(Math.random() * 30) + 50 }
+            ];
+
+            const components = [...wetComponents, ...dryComponents].map(item => ({
+                ...item,
+                type: wetComponents.includes(item) ? 'wet' : 'dry'
+            }));
+
+            const reports = {
+                wet: "This appears to be primarily wet/organic waste. It should be disposed of in the green dustbin for composting or biogas generation. Wet waste includes food scraps, vegetable peels, and other biodegradable materials that break down naturally.",
+                dry: "This appears to be primarily dry/recyclable waste. It should be disposed of in the blue dustbin for recycling. Dry waste includes plastics, paper, cardboard, and other materials that can be recycled or reused.",
+                mixed: "This appears to be mixed waste containing both wet and dry components. For proper disposal, separate the wet and dry components. Wet waste should go to the green dustbin for composting, while dry waste should go to the blue dustbin for recycling."
+            };
+
+            return {
+                isWaste: true,
+                hasLivingBeings: false,
+                classification: selectedType,
+                confidence: {
+                    wet: wetConf,
+                    dry: dryConf
+                },
+                dustbin: dustbin,
+                components: components,
+                report: reports[selectedType],
+                description: `This image shows ${selectedType} waste materials.`
+            };
+        }
+
+        function displayResults(result) {
+            // Check if this image contains living beings
+            if (result.hasLivingBeings === true || result.classification === "living_beings") {
+                // Handle images with living beings
+                wasteTypeBadge.textContent = 'Living Beings Detected';
+                wasteTypeBadge.className = 'waste-type-badge non-waste-badge';
+                resultDescription.textContent = 'This image contains living beings (humans or animals) and cannot be analyzed for waste composition.';
+
+                // Hide confidence meters and dustbin recommendation
+                wetConfidence.style.display = 'none';
+                dryConfidence.style.display = 'none';
+                dustbinRecommendation.style.display = 'none';
+
+                // Update report
+                reportContent.innerHTML = `<p>${result.report || 'This image appears to contain living beings. Please upload an image of waste materials for analysis.'}</p>`;
+
+                // Hide components section
+                wasteComponents.style.display = 'none';
+
+                return;
+            }
+
+            // Check if this is waste or not
+            if (result.isWaste === false || result.classification === "not_waste") {
+                // Handle non-waste images
+                wasteTypeBadge.textContent = 'Not Waste';
+                wasteTypeBadge.className = 'waste-type-badge non-waste-badge';
+                resultDescription.textContent = result.description || 'This image does not appear to contain waste materials.';
+
+                // Hide confidence meters for non-waste
+                wetConfidence.style.display = 'none';
+                dryConfidence.style.display = 'none';
+                dustbinRecommendation.style.display = 'none';
+
+                // Update report
+                reportContent.innerHTML = `<p>${result.report || 'Please upload an image of waste materials for analysis.'}</p>`;
+
+                // Hide components section
+                wasteComponents.style.display = 'none';
+
+                return;
+            }
+
+            // Update waste type badge
+            const classification = result.classification;
+            wasteTypeBadge.textContent = classification.charAt(0).toUpperCase() + classification.slice(1) + ' Waste';
+
+            if (classification === 'wet') {
+                wasteTypeBadge.className = 'waste-type-badge wet-badge';
+                resultDescription.textContent = 'This waste appears to be primarily wet/organic waste and should be disposed of in the green dustbin for composting or biogas generation.';
+            } else if (classification === 'dry') {
+                wasteTypeBadge.className = 'waste-type-badge dry-badge';
+                resultDescription.textContent = 'This waste appears to be primarily dry/recyclable waste and should be disposed of in the blue dustbin for recycling.';
+            } else {
+                wasteTypeBadge.className = 'waste-type-badge mixed-badge';
+                resultDescription.textContent = 'This appears to be mixed waste. Please separate wet and dry components for proper disposal.';
+            }
+
+            // Update confidence meters
+            const wetConf = result.confidence.wet || 0;
+            const dryConf = result.confidence.dry || 0;
+
+            wetConfidenceValue.textContent = `${wetConf}%`;
+            wetConfidenceFill.style.width = `${wetConf}%`;
+            wetConfidence.style.display = 'block';
+
+            dryConfidenceValue.textContent = `${dryConf}%`;
+            dryConfidenceFill.style.width = `${dryConf}%`;
+            dryConfidence.style.display = 'block';
+
+            // Update dustbin recommendation
+            const dustbinType = result.dustbin || 'both';
+            dustbinRecommendation.style.display = 'block';
+            
+            if (dustbinType === 'green') {
+                dustbinDescription.textContent = 'Based on the analysis, this waste should be disposed of in the GREEN dustbin.';
+                greenDustbin.style.opacity = '1';
+                blueDustbin.style.opacity = '0.5';
+                greenDustbinDesc.textContent = 'For wet/organic waste - Recommended';
+                blueDustbinDesc.textContent = 'For dry/recyclable waste - Not recommended';
+            } else if (dustbinType === 'blue') {
+                dustbinDescription.textContent = 'Based on the analysis, this waste should be disposed of in the BLUE dustbin.';
+                greenDustbin.style.opacity = '0.5';
+                blueDustbin.style.opacity = '1';
+                greenDustbinDesc.textContent = 'For wet/organic waste - Not recommended';
+                blueDustbinDesc.textContent = 'For dry/recyclable waste - Recommended';
+            } else {
+                dustbinDescription.textContent = 'Based on the analysis, this is mixed waste. Please separate components before disposal.';
+                greenDustbin.style.opacity = '1';
+                blueDustbin.style.opacity = '1';
+                greenDustbinDesc.textContent = 'For wet/organic waste - Use for wet components';
+                blueDustbinDesc.textContent = 'For dry/recyclable waste - Use for dry components';
+            }
+
+            // Update report
+            reportContent.innerHTML = `<p>${result.report}</p>`;
+
+            // Update components list if available
+            if (result.components && result.components.length > 0) {
+                wetComponentsList.innerHTML = '';
+                dryComponentsList.innerHTML = '';
+
+                result.components.forEach(component => {
+                    const componentElement = document.createElement('div');
+                    componentElement.className = 'component-item';
+                    componentElement.innerHTML = `
+                        <span class="component-name">${component.name}</span>
+                        <span class="component-confidence">${component.confidence}%</span>
+                    `;
+
+                    if (component.type === 'wet') {
+                        wetComponentsList.appendChild(componentElement);
+                    } else {
+                        dryComponentsList.appendChild(componentElement);
+                    }
+                });
+
+                wasteComponents.style.display = 'grid';
+            } else {
+                wasteComponents.style.display = 'none';
+            }
+        }
+
+        function showError(message) {
+            errorMessage.textContent = message;
+            errorMessage.style.display = 'block';
+        }
+
+        function showInfo(message) {
+            infoMessage.textContent = message;
+            infoMessage.style.display = 'block';
+        }
+
+        function hideMessages() {
+            errorMessage.style.display = 'none';
+            infoMessage.style.display = 'none';
+        }
+
+        // Background animation
+        const backgroundAnimation = document.getElementById('backgroundAnimation');
+
+        // Create bubbles
+        for (let i = 0; i < 15; i++) {
+            const bubble = document.createElement('div');
+            bubble.classList.add('bubble');
+            const size = Math.random() * 60 + 20;
+            bubble.style.width = `${size}px`;
+            bubble.style.height = `${size}px`;
+            bubble.style.left = `${Math.random() * 100}%`;
+            bubble.style.top = `${Math.random() * 100}%`;
+            bubble.style.animationDelay = `${Math.random() * 15}s`;
+            backgroundAnimation.appendChild(bubble);
+        }
+
+        // Create leaves
+        for (let i = 0; i < 10; i++) {
+            const leaf = document.createElement('div');
+            leaf.classList.add('leaf');
+            leaf.innerHTML = '<i class="fas fa-leaf"></i>';
+            leaf.style.left = `${Math.random() * 100}%`;
+            leaf.style.animationDelay = `${Math.random() * 20}s`;
+            backgroundAnimation.appendChild(leaf);
+        }
+    </script>
+</body>
+
+</html>

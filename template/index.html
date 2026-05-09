@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Waste Management & Dustbin Recommendation System</title>
+    
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.replit.com/agent/bootstrap-agent-dark-theme.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="{{ url_for('static', filename='css/style.css') }}" rel="stylesheet">
+</head>
+<body data-theme="dark">
+    <!-- Theme Toggle Button -->
+    <div class="theme-toggle" onclick="toggleTheme()">
+        <i class="fas fa-sun sun-icon"></i>
+        <i class="fas fa-moon moon-icon"></i>
+    </div>
+    
+    <!-- Animated Background -->
+    <div class="animated-bg">
+        <div class="floating-shapes">
+            <div class="shape shape-1"></div>
+            <div class="shape shape-2"></div>
+            <div class="shape shape-3"></div>
+            <div class="shape shape-4"></div>
+            <div class="shape shape-5"></div>
+        </div>
+    </div>
+    
+    <div class="container-fluid">
+        <!-- Header -->
+        <nav class="navbar navbar-expand-lg mb-4 glass-nav">
+            <div class="container">
+                <a class="navbar-brand gradient-text" href="#">
+                    <i class="fas fa-recycle me-2 rotating-icon"></i>
+                    AI Waste Management System
+                </a>
+            </div>
+        </nav>
+
+        <!-- Main Content -->
+        <div class="container">
+            <div class="row">
+                <!-- Left Panel - Waste Classification -->
+                <div class="col-lg-6 mb-4">
+                    <div class="card glass-card h-100">
+                        <div class="card-header glass-header">
+                            <h5 class="card-title mb-0">
+                                <i class="fas fa-camera me-2 icon-glow"></i>
+                                Waste Classification
+                            </h5>
+                        </div>
+                        <div class="card-body">
+                            <!-- Image Upload Form -->
+                            <form id="wasteForm" enctype="multipart/form-data">
+                                <div class="mb-3">
+                                    <label for="imageInput" class="form-label">Upload Waste Image</label>
+                                    <input type="file" class="form-control" id="imageInput" name="image" 
+                                           accept="image/*" required>
+                                    <div class="form-text">Supported formats: JPG, JPEG, PNG, GIF (Max: 16MB)</div>
+                                </div>
+                                
+                                <div class="mb-3">
+                                    <button type="button" class="btn btn-outline-secondary me-2" id="captureBtn">
+                                        <i class="fas fa-camera me-1"></i>
+                                        Take Photo
+                                    </button>
+                                    <button type="submit" class="btn btn-primary" id="classifyBtn">
+                                        <i class="fas fa-search me-1"></i>
+                                        Classify Waste
+                                    </button>
+                                </div>
+                            </form>
+
+                            <!-- Camera Capture -->
+                            <div id="cameraSection" class="d-none mb-3">
+                                <video id="video" class="img-fluid mb-2" autoplay></video>
+                                <canvas id="canvas" class="d-none"></canvas>
+                                <div>
+                                    <button type="button" class="btn btn-success me-2" id="snapBtn">
+                                        <i class="fas fa-camera me-1"></i>
+                                        Capture
+                                    </button>
+                                    <button type="button" class="btn btn-secondary" id="stopCameraBtn">
+                                        <i class="fas fa-times me-1"></i>
+                                        Cancel
+                                    </button>
+                                </div>
+                            </div>
+
+                            <!-- Image Preview -->
+                            <div id="imagePreview" class="mb-3 d-none">
+                                <img id="previewImg" class="img-fluid rounded" alt="Selected image">
+                            </div>
+
+                            <!-- Loading Spinner -->
+                            <div id="loadingSpinner" class="text-center d-none">
+                                <div class="spinner-border text-primary" role="status">
+                                    <span class="visually-hidden">Analyzing...</span>
+                                </div>
+                                <p class="mt-2">Analyzing waste image...</p>
+                            </div>
+
+                            <!-- Classification Results -->
+                            <div id="classificationResult" class="d-none">
+                                <div class="alert alert-success">
+                                    <h6 class="alert-heading">
+                                        <i class="fas fa-check-circle me-2"></i>
+                                        Classification Complete
+                                    </h6>
+                                    <div id="resultDetails"></div>
+                                </div>
+                            </div>
+
+                            <!-- Error Display -->
+                            <div id="errorDisplay" class="d-none">
+                                <div class="alert alert-danger">
+                                    <i class="fas fa-exclamation-triangle me-2"></i>
+                                    <span id="errorMessage"></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right Panel - Map and Dustbin Locations -->
+                <div class="col-lg-6 mb-4">
+                    <div class="card glass-card h-100">
+                        <div class="card-header glass-header">
+                            <h5 class="card-title mb-0">
+                                <i class="fas fa-map-marker-alt me-2 icon-glow"></i>
+                                Nearby Dustbins
+                            </h5>
+                        </div>
+                        <div class="card-body">
+                            <!-- Location Input and Status -->
+                            <div class="mb-3">
+                                <label for="locationInput" class="form-label">Enter Location or Get Current Location</label>
+                                <div class="input-group">
+                                    <input type="text" class="form-control" id="locationInput" placeholder="Enter area name in Mysuru (e.g., KR Circle, Jayanagar)">
+                                    <button type="button" class="btn btn-outline-secondary" id="searchLocationBtn">
+                                        <i class="fas fa-search"></i>
+                                    </button>
+                                    <button type="button" class="btn btn-outline-primary" id="getLocationBtn">
+                                        <i class="fas fa-location-arrow"></i> GPS
+                                    </button>
+                                </div>
+                            </div>
+                            
+                            <div id="locationStatus" class="alert alert-info">
+                                <i class="fas fa-map-marker-alt me-2"></i>
+                                <span id="locationText">Enter a location or use GPS to find nearby dustbins</span>
+                            </div>
+
+                            <!-- Embedded Google Maps -->
+                            <div id="mapContainer" class="mb-3">
+                                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d124738.44878734244!2d76.55328774340765!3d12.310633406676187!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3baf70381d572ef9%3A0x2b89ece8c0f8396d!2sMysuru%2C%20Karnataka!5e0!3m2!1sen!2sin!4v1756641883842!5m2!1sen!2sin" 
+                                        width="100%" height="400" style="border:0; border-radius: 0.375rem;" 
+                                        allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade">
+                                </iframe>
+                            </div>
+
+                            <!-- Nearest Dustbins List -->
+                            <div id="dustbinsList">
+                                <div class="d-flex justify-content-between align-items-center mb-3">
+                                    <h6 class="mb-0">Nearest Dustbins:</h6>
+                                    <select class="form-select form-select-sm" id="locationDropdown" style="width: auto;">
+                                        <option value="">Quick Select Location</option>
+                                        <option value="kr_circle">KR Circle</option>
+                                        <option value="devaraja_market">Devaraja Market</option>
+                                        <option value="jayanagar">Jayanagar</option>
+                                        <option value="railway_station">Railway Station</option>
+                                        <option value="mysore_zoo">Mysore Zoo</option>
+                                        <option value="lakshmipuram">Lakshmipuram</option>
+                                        <option value="nazarbad">Nazarbad</option>
+                                        <option value="gokulam">Gokulam</option>
+                                        <option value="infosys">Infosys Campus</option>
+                                        <option value="chamundi_hill">Chamundi Hill</option>
+                                        <option value="hebbal">Hebbal</option>
+                                        <option value="vijayanagar">Vijayanagar</option>
+                                        <option value="saraswathipuram">Saraswathipuram</option>
+                                        <option value="kuvempunagar">Kuvempunagar</option>
+                                        <option value="manasagangothri">Manasagangothri</option>
+                                    </select>
+                                </div>
+                                <div id="dustbinsContainer">
+                                    <p class="text-muted">Upload an image and get your location to see nearby dustbins.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Waste Type Information -->
+            <div class="row mt-4">
+                <div class="col-12">
+                    <div class="card glass-card info-card">
+                        <div class="card-header glass-header">
+                            <h5 class="card-title mb-0">
+                                <i class="fas fa-info-circle me-2 icon-glow"></i>
+                                Waste Segregation Guide
+                            </h5>
+                        </div>
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="d-flex align-items-center mb-3">
+                                        <div class="waste-color-indicator me-3" style="background-color: #4CAF50;"></div>
+                                        <div>
+                                            <h6 class="mb-1">Wet Waste (Green Bin)</h6>
+                                            <p class="mb-0 text-muted">Food scraps, organic matter, biodegradable materials</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="d-flex align-items-center mb-3">
+                                        <div class="waste-color-indicator me-3" style="background-color: #2196F3;"></div>
+                                        <div>
+                                            <h6 class="mb-1">Dry Waste (Blue Bin)</h6>
+                                            <p class="mb-0 text-muted">Plastic, paper, metal, non-biodegradable materials</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <!-- No Google Maps API needed with embedded iframe -->
+    
+    <!-- Custom JavaScript -->
+    <script src="{{ url_for('static', filename='js/app.js') }}"></script>
+</body>
+</html>

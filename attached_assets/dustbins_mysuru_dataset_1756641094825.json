@@ -1,0 +1,1536 @@
+{
+  "mysore_palace": {
+    "lat": 12.3051,
+    "lon": 76.6552
+  },
+  "dustbins": [
+    {
+      "id": 1,
+      "location_name": "Dustbin near KR Circle",
+      "city": "Mysuru",
+      "latitude": 12.305443,
+      "longitude": 76.654743,
+      "distance_from_mysore_palace_km": 0.1
+    },
+    {
+      "id": 2,
+      "location_name": "Dustbin near KR Circle",
+      "city": "Mysuru",
+      "latitude": 12.3035,
+      "longitude": 76.656984,
+      "distance_from_mysore_palace_km": 0.3
+    },
+    {
+      "id": 3,
+      "location_name": "Dustbin near Devaraja Market",
+      "city": "Mysuru",
+      "latitude": 12.307318,
+      "longitude": 76.653684,
+      "distance_from_mysore_palace_km": 0.3
+    },
+    {
+      "id": 4,
+      "location_name": "Dustbin near Devaraja Market",
+      "city": "Mysuru",
+      "latitude": 12.30761,
+      "longitude": 76.654162,
+      "distance_from_mysore_palace_km": 0.3
+    },
+    {
+      "id": 12,
+      "location_name": "Dustbin near Lakshmipuram",
+      "city": "Mysuru",
+      "latitude": 12.302421,
+      "longitude": 76.660829,
+      "distance_from_mysore_palace_km": 0.7
+    },
+    {
+      "id": 11,
+      "location_name": "Dustbin near Lakshmipuram",
+      "city": "Mysuru",
+      "latitude": 12.304647,
+      "longitude": 76.662097,
+      "distance_from_mysore_palace_km": 0.8
+    },
+    {
+      "id": 13,
+      "location_name": "Dustbin near Lakshmipuram",
+      "city": "Mysuru",
+      "latitude": 12.305281,
+      "longitude": 76.662618,
+      "distance_from_mysore_palace_km": 0.8
+    },
+    {
+      "id": 14,
+      "location_name": "Dustbin near Lakshmipuram",
+      "city": "Mysuru",
+      "latitude": 12.303614,
+      "longitude": 76.663173,
+      "distance_from_mysore_palace_km": 0.9
+    },
+    {
+      "id": 6,
+      "location_name": "Dustbin near Jayanagar",
+      "city": "Mysuru",
+      "latitude": 12.295237,
+      "longitude": 76.65932,
+      "distance_from_mysore_palace_km": 1.2
+    },
+    {
+      "id": 9,
+      "location_name": "Dustbin near Jayanagar",
+      "city": "Mysuru",
+      "latitude": 12.295257,
+      "longitude": 76.659252,
+      "distance_from_mysore_palace_km": 1.2
+    },
+    {
+      "id": 47,
+      "location_name": "Dustbin near Mysore Zoo",
+      "city": "Mysuru",
+      "latitude": 12.300607,
+      "longitude": 76.665328,
+      "distance_from_mysore_palace_km": 1.2
+    },
+    {
+      "id": 75,
+      "location_name": "Dustbin near Nazarbad",
+      "city": "Mysuru",
+      "latitude": 12.300536,
+      "longitude": 76.665227,
+      "distance_from_mysore_palace_km": 1.2
+    },
+    {
+      "id": 76,
+      "location_name": "Dustbin near Nazarbad",
+      "city": "Mysuru",
+      "latitude": 12.302451,
+      "longitude": 76.665737,
+      "distance_from_mysore_palace_km": 1.2
+    },
+    {
+      "id": 5,
+      "location_name": "Dustbin near Jayanagar",
+      "city": "Mysuru",
+      "latitude": 12.294211,
+      "longitude": 76.658203,
+      "distance_from_mysore_palace_km": 1.3
+    },
+    {
+      "id": 7,
+      "location_name": "Dustbin near Jayanagar",
+      "city": "Mysuru",
+      "latitude": 12.294453,
+      "longitude": 76.659863,
+      "distance_from_mysore_palace_km": 1.3
+    },
+    {
+      "id": 8,
+      "location_name": "Dustbin near Jayanagar",
+      "city": "Mysuru",
+      "latitude": 12.294028,
+      "longitude": 76.657935,
+      "distance_from_mysore_palace_km": 1.3
+    },
+    {
+      "id": 10,
+      "location_name": "Dustbin near Jayanagar",
+      "city": "Mysuru",
+      "latitude": 12.29374,
+      "longitude": 76.657895,
+      "distance_from_mysore_palace_km": 1.3
+    },
+    {
+      "id": 45,
+      "location_name": "Dustbin near Mysore Zoo",
+      "city": "Mysuru",
+      "latitude": 12.299876,
+      "longitude": 76.666162,
+      "distance_from_mysore_palace_km": 1.3
+    },
+    {
+      "id": 42,
+      "location_name": "Dustbin near Mysore Zoo",
+      "city": "Mysuru",
+      "latitude": 12.302318,
+      "longitude": 76.667862,
+      "distance_from_mysore_palace_km": 1.4
+    },
+    {
+      "id": 43,
+      "location_name": "Dustbin near Mysore Zoo",
+      "city": "Mysuru",
+      "latitude": 12.299787,
+      "longitude": 76.666766,
+      "distance_from_mysore_palace_km": 1.4
+    },
+    {
+      "id": 46,
+      "location_name": "Dustbin near Mysore Zoo",
+      "city": "Mysuru",
+      "latitude": 12.301087,
+      "longitude": 76.667172,
+      "distance_from_mysore_palace_km": 1.4
+    },
+    {
+      "id": 48,
+      "location_name": "Dustbin near Railway Station",
+      "city": "Mysuru",
+      "latitude": 12.313675,
+      "longitude": 76.645917,
+      "distance_from_mysore_palace_km": 1.4
+    },
+    {
+      "id": 49,
+      "location_name": "Dustbin near Railway Station",
+      "city": "Mysuru",
+      "latitude": 12.313667,
+      "longitude": 76.645973,
+      "distance_from_mysore_palace_km": 1.4
+    },
+    {
+      "id": 19,
+      "location_name": "Dustbin near Saraswathipuram",
+      "city": "Mysuru",
+      "latitude": 12.30182,
+      "longitude": 76.641424,
+      "distance_from_mysore_palace_km": 1.5
+    },
+    {
+      "id": 44,
+      "location_name": "Dustbin near Mysore Zoo",
+      "city": "Mysuru",
+      "latitude": 12.301595,
+      "longitude": 76.668163,
+      "distance_from_mysore_palace_km": 1.5
+    },
+    {
+      "id": 18,
+      "location_name": "Dustbin near Saraswathipuram",
+      "city": "Mysuru",
+      "latitude": 12.30132,
+      "longitude": 76.641152,
+      "distance_from_mysore_palace_km": 1.6
+    },
+    {
+      "id": 20,
+      "location_name": "Dustbin near Saraswathipuram",
+      "city": "Mysuru",
+      "latitude": 12.300369,
+      "longitude": 76.640457,
+      "distance_from_mysore_palace_km": 1.7
+    },
+    {
+      "id": 21,
+      "location_name": "Dustbin near Saraswathipuram",
+      "city": "Mysuru",
+      "latitude": 12.301919,
+      "longitude": 76.640129,
+      "distance_from_mysore_palace_km": 1.7
+    },
+    {
+      "id": 16,
+      "location_name": "Dustbin near Kuvempunagar",
+      "city": "Mysuru",
+      "latitude": 12.275096,
+      "longitude": 76.643297,
+      "distance_from_mysore_palace_km": 3.6
+    },
+    {
+      "id": 17,
+      "location_name": "Dustbin near Kuvempunagar",
+      "city": "Mysuru",
+      "latitude": 12.275266,
+      "longitude": 76.642738,
+      "distance_from_mysore_palace_km": 3.6
+    },
+    {
+      "id": 91,
+      "location_name": "Dustbin near Vontikoppal",
+      "city": "Mysuru",
+      "latitude": 12.32743,
+      "longitude": 76.631268,
+      "distance_from_mysore_palace_km": 3.6
+    },
+    {
+      "id": 15,
+      "location_name": "Dustbin near Kuvempunagar",
+      "city": "Mysuru",
+      "latitude": 12.274126,
+      "longitude": 76.641875,
+      "distance_from_mysore_palace_km": 3.7
+    },
+    {
+      "id": 87,
+      "location_name": "Dustbin near Manasagangothri",
+      "city": "Mysuru",
+      "latitude": 12.315305,
+      "longitude": 76.62234,
+      "distance_from_mysore_palace_km": 3.7
+    },
+    {
+      "id": 89,
+      "location_name": "Dustbin near Vontikoppal",
+      "city": "Mysuru",
+      "latitude": 12.327929,
+      "longitude": 76.630689,
+      "distance_from_mysore_palace_km": 3.7
+    },
+    {
+      "id": 90,
+      "location_name": "Dustbin near Vontikoppal",
+      "city": "Mysuru",
+      "latitude": 12.32943,
+      "longitude": 76.631337,
+      "distance_from_mysore_palace_km": 3.7
+    },
+    {
+      "id": 41,
+      "location_name": "Dustbin near Chamundi Hill Entrance",
+      "city": "Mysuru",
+      "latitude": 12.273873,
+      "longitude": 76.670712,
+      "distance_from_mysore_palace_km": 3.9
+    },
+    {
+      "id": 86,
+      "location_name": "Dustbin near Manasagangothri",
+      "city": "Mysuru",
+      "latitude": 12.316051,
+      "longitude": 76.620874,
+      "distance_from_mysore_palace_km": 3.9
+    },
+    {
+      "id": 88,
+      "location_name": "Dustbin near Manasagangothri",
+      "city": "Mysuru",
+      "latitude": 12.314325,
+      "longitude": 76.620913,
+      "distance_from_mysore_palace_km": 3.9
+    },
+    {
+      "id": 33,
+      "location_name": "Dustbin near Gokulam",
+      "city": "Mysuru",
+      "latitude": 12.330838,
+      "longitude": 76.629327,
+      "distance_from_mysore_palace_km": 4.0
+    },
+    {
+      "id": 34,
+      "location_name": "Dustbin near Gokulam",
+      "city": "Mysuru",
+      "latitude": 12.32924,
+      "longitude": 76.628029,
+      "distance_from_mysore_palace_km": 4.0
+    },
+    {
+      "id": 40,
+      "location_name": "Dustbin near Chamundi Hill Entrance",
+      "city": "Mysuru",
+      "latitude": 12.272643,
+      "longitude": 76.670553,
+      "distance_from_mysore_palace_km": 4.0
+    },
+    {
+      "id": 83,
+      "location_name": "Dustbin near Manasagangothri",
+      "city": "Mysuru",
+      "latitude": 12.315118,
+      "longitude": 76.620239,
+      "distance_from_mysore_palace_km": 4.0
+    },
+    {
+      "id": 84,
+      "location_name": "Dustbin near Manasagangothri",
+      "city": "Mysuru",
+      "latitude": 12.316835,
+      "longitude": 76.620156,
+      "distance_from_mysore_palace_km": 4.0
+    },
+    {
+      "id": 85,
+      "location_name": "Dustbin near Manasagangothri",
+      "city": "Mysuru",
+      "latitude": 12.314262,
+      "longitude": 76.619989,
+      "distance_from_mysore_palace_km": 4.0
+    },
+    {
+      "id": 95,
+      "location_name": "Dustbin near Nanjangud Road (Ooty Road)",
+      "city": "Mysuru",
+      "latitude": 12.269329,
+      "longitude": 76.660277,
+      "distance_from_mysore_palace_km": 4.0
+    },
+    {
+      "id": 35,
+      "location_name": "Dustbin near Gokulam",
+      "city": "Mysuru",
+      "latitude": 12.329376,
+      "longitude": 76.62651,
+      "distance_from_mysore_palace_km": 4.1
+    },
+    {
+      "id": 37,
+      "location_name": "Dustbin near Chamundi Hill Entrance",
+      "city": "Mysuru",
+      "latitude": 12.272123,
+      "longitude": 76.672066,
+      "distance_from_mysore_palace_km": 4.1
+    },
+    {
+      "id": 38,
+      "location_name": "Dustbin near Chamundi Hill Entrance",
+      "city": "Mysuru",
+      "latitude": 12.271901,
+      "longitude": 76.671854,
+      "distance_from_mysore_palace_km": 4.1
+    },
+    {
+      "id": 39,
+      "location_name": "Dustbin near Chamundi Hill Entrance",
+      "city": "Mysuru",
+      "latitude": 12.271979,
+      "longitude": 76.672088,
+      "distance_from_mysore_palace_km": 4.1
+    },
+    {
+      "id": 92,
+      "location_name": "Dustbin near Nanjangud Road (Ooty Road)",
+      "city": "Mysuru",
+      "latitude": 12.268932,
+      "longitude": 76.661721,
+      "distance_from_mysore_palace_km": 4.1
+    },
+    {
+      "id": 93,
+      "location_name": "Dustbin near Nanjangud Road (Ooty Road)",
+      "city": "Mysuru",
+      "latitude": 12.268651,
+      "longitude": 76.660677,
+      "distance_from_mysore_palace_km": 4.1
+    },
+    {
+      "id": 94,
+      "location_name": "Dustbin near Nanjangud Road (Ooty Road)",
+      "city": "Mysuru",
+      "latitude": 12.268685,
+      "longitude": 76.661842,
+      "distance_from_mysore_palace_km": 4.1
+    },
+    {
+      "id": 32,
+      "location_name": "Dustbin near Gokulam",
+      "city": "Mysuru",
+      "latitude": 12.330408,
+      "longitude": 76.627005,
+      "distance_from_mysore_palace_km": 4.2
+    },
+    {
+      "id": 36,
+      "location_name": "Dustbin near Gokulam",
+      "city": "Mysuru",
+      "latitude": 12.33189,
+      "longitude": 76.628089,
+      "distance_from_mysore_palace_km": 4.2
+    },
+    {
+      "id": 96,
+      "location_name": "Dustbin near Nanjangud Road (Ooty Road)",
+      "city": "Mysuru",
+      "latitude": 12.266388,
+      "longitude": 76.66138,
+      "distance_from_mysore_palace_km": 4.4
+    },
+    {
+      "id": 65,
+      "location_name": "Dustbin near Ramakrishna Nagar",
+      "city": "Mysuru",
+      "latitude": 12.28129,
+      "longitude": 76.620483,
+      "distance_from_mysore_palace_km": 4.6
+    },
+    {
+      "id": 68,
+      "location_name": "Dustbin near Ramakrishna Nagar",
+      "city": "Mysuru",
+      "latitude": 12.281211,
+      "longitude": 76.62081,
+      "distance_from_mysore_palace_km": 4.6
+    },
+    {
+      "id": 70,
+      "location_name": "Dustbin near Ramakrishna Nagar",
+      "city": "Mysuru",
+      "latitude": 12.280898,
+      "longitude": 76.621233,
+      "distance_from_mysore_palace_km": 4.6
+    },
+    {
+      "id": 53,
+      "location_name": "Dustbin near Lalitha Mahal",
+      "city": "Mysuru",
+      "latitude": 12.279196,
+      "longitude": 76.689449,
+      "distance_from_mysore_palace_km": 4.7
+    },
+    {
+      "id": 66,
+      "location_name": "Dustbin near Ramakrishna Nagar",
+      "city": "Mysuru",
+      "latitude": 12.281009,
+      "longitude": 76.619861,
+      "distance_from_mysore_palace_km": 4.7
+    },
+    {
+      "id": 67,
+      "location_name": "Dustbin near Ramakrishna Nagar",
+      "city": "Mysuru",
+      "latitude": 12.279642,
+      "longitude": 76.620248,
+      "distance_from_mysore_palace_km": 4.7
+    },
+    {
+      "id": 50,
+      "location_name": "Dustbin near Lalitha Mahal",
+      "city": "Mysuru",
+      "latitude": 12.278903,
+      "longitude": 76.690879,
+      "distance_from_mysore_palace_km": 4.8
+    },
+    {
+      "id": 54,
+      "location_name": "Dustbin near Lalitha Mahal",
+      "city": "Mysuru",
+      "latitude": 12.279627,
+      "longitude": 76.690652,
+      "distance_from_mysore_palace_km": 4.8
+    },
+    {
+      "id": 55,
+      "location_name": "Dustbin near Lalitha Mahal",
+      "city": "Mysuru",
+      "latitude": 12.279064,
+      "longitude": 76.690881,
+      "distance_from_mysore_palace_km": 4.8
+    },
+    {
+      "id": 69,
+      "location_name": "Dustbin near Ramakrishna Nagar",
+      "city": "Mysuru",
+      "latitude": 12.280111,
+      "longitude": 76.61933,
+      "distance_from_mysore_palace_km": 4.8
+    },
+    {
+      "id": 51,
+      "location_name": "Dustbin near Lalitha Mahal",
+      "city": "Mysuru",
+      "latitude": 12.278143,
+      "longitude": 76.691211,
+      "distance_from_mysore_palace_km": 4.9
+    },
+    {
+      "id": 52,
+      "location_name": "Dustbin near Lalitha Mahal",
+      "city": "Mysuru",
+      "latitude": 12.278808,
+      "longitude": 76.692105,
+      "distance_from_mysore_palace_km": 5.0
+    },
+    {
+      "id": 31,
+      "location_name": "Dustbin near Brindavan Extension",
+      "city": "Mysuru",
+      "latitude": 12.341386,
+      "longitude": 76.626853,
+      "distance_from_mysore_palace_km": 5.1
+    },
+    {
+      "id": 30,
+      "location_name": "Dustbin near Brindavan Extension",
+      "city": "Mysuru",
+      "latitude": 12.343549,
+      "longitude": 76.625986,
+      "distance_from_mysore_palace_km": 5.3
+    },
+    {
+      "id": 58,
+      "location_name": "Dustbin near Infosys Campus",
+      "city": "Mysuru",
+      "latitude": 12.257447,
+      "longitude": 76.654516,
+      "distance_from_mysore_palace_km": 5.3
+    },
+    {
+      "id": 56,
+      "location_name": "Dustbin near Infosys Campus",
+      "city": "Mysuru",
+      "latitude": 12.256245,
+      "longitude": 76.65293,
+      "distance_from_mysore_palace_km": 5.4
+    },
+    {
+      "id": 59,
+      "location_name": "Dustbin near Infosys Campus",
+      "city": "Mysuru",
+      "latitude": 12.256845,
+      "longitude": 76.65211,
+      "distance_from_mysore_palace_km": 5.4
+    },
+    {
+      "id": 57,
+      "location_name": "Dustbin near Infosys Campus",
+      "city": "Mysuru",
+      "latitude": 12.255627,
+      "longitude": 76.654938,
+      "distance_from_mysore_palace_km": 5.5
+    },
+    {
+      "id": 71,
+      "location_name": "Dustbin near Alanahalli",
+      "city": "Mysuru",
+      "latitude": 12.264384,
+      "longitude": 76.686222,
+      "distance_from_mysore_palace_km": 5.6
+    },
+    {
+      "id": 72,
+      "location_name": "Dustbin near Alanahalli",
+      "city": "Mysuru",
+      "latitude": 12.264781,
+      "longitude": 76.687578,
+      "distance_from_mysore_palace_km": 5.7
+    },
+    {
+      "id": 73,
+      "location_name": "Dustbin near Alanahalli",
+      "city": "Mysuru",
+      "latitude": 12.264448,
+      "longitude": 76.688894,
+      "distance_from_mysore_palace_km": 5.8
+    },
+    {
+      "id": 74,
+      "location_name": "Dustbin near Alanahalli",
+      "city": "Mysuru",
+      "latitude": 12.264961,
+      "longitude": 76.688729,
+      "distance_from_mysore_palace_km": 5.8
+    },
+    {
+      "id": 78,
+      "location_name": "Dustbin near Metagalli",
+      "city": "Mysuru",
+      "latitude": 12.351613,
+      "longitude": 76.628753,
+      "distance_from_mysore_palace_km": 5.9
+    },
+    {
+      "id": 79,
+      "location_name": "Dustbin near Metagalli",
+      "city": "Mysuru",
+      "latitude": 12.352477,
+      "longitude": 76.628099,
+      "distance_from_mysore_palace_km": 6.0
+    },
+    {
+      "id": 77,
+      "location_name": "Dustbin near Metagalli",
+      "city": "Mysuru",
+      "latitude": 12.352471,
+      "longitude": 76.626684,
+      "distance_from_mysore_palace_km": 6.1
+    },
+    {
+      "id": 27,
+      "location_name": "Dustbin near Hebbal",
+      "city": "Mysuru",
+      "latitude": 12.353687,
+      "longitude": 76.621863,
+      "distance_from_mysore_palace_km": 6.5
+    },
+    {
+      "id": 29,
+      "location_name": "Dustbin near Hebbal",
+      "city": "Mysuru",
+      "latitude": 12.355238,
+      "longitude": 76.622168,
+      "distance_from_mysore_palace_km": 6.6
+    },
+    {
+      "id": 28,
+      "location_name": "Dustbin near Hebbal",
+      "city": "Mysuru",
+      "latitude": 12.355801,
+      "longitude": 76.621174,
+      "distance_from_mysore_palace_km": 6.7
+    },
+    {
+      "id": 82,
+      "location_name": "Dustbin near Bogadi",
+      "city": "Mysuru",
+      "latitude": 12.28977,
+      "longitude": 76.591344,
+      "distance_from_mysore_palace_km": 7.1
+    },
+    {
+      "id": 80,
+      "location_name": "Dustbin near Bogadi",
+      "city": "Mysuru",
+      "latitude": 12.289692,
+      "longitude": 76.590335,
+      "distance_from_mysore_palace_km": 7.3
+    },
+    {
+      "id": 24,
+      "location_name": "Dustbin near Vijayanagar",
+      "city": "Mysuru",
+      "latitude": 12.328719,
+      "longitude": 76.591136,
+      "distance_from_mysore_palace_km": 7.4
+    },
+    {
+      "id": 81,
+      "location_name": "Dustbin near Bogadi",
+      "city": "Mysuru",
+      "latitude": 12.290136,
+      "longitude": 76.588939,
+      "distance_from_mysore_palace_km": 7.4
+    },
+    {
+      "id": 23,
+      "location_name": "Dustbin near Vijayanagar",
+      "city": "Mysuru",
+      "latitude": 12.327442,
+      "longitude": 76.590265,
+      "distance_from_mysore_palace_km": 7.5
+    },
+    {
+      "id": 25,
+      "location_name": "Dustbin near Vijayanagar",
+      "city": "Mysuru",
+      "latitude": 12.327823,
+      "longitude": 76.590015,
+      "distance_from_mysore_palace_km": 7.5
+    },
+    {
+      "id": 22,
+      "location_name": "Dustbin near Vijayanagar",
+      "city": "Mysuru",
+      "latitude": 12.329244,
+      "longitude": 76.589842,
+      "distance_from_mysore_palace_km": 7.6
+    },
+    {
+      "id": 26,
+      "location_name": "Dustbin near Vijayanagar",
+      "city": "Mysuru",
+      "latitude": 12.328535,
+      "longitude": 76.589514,
+      "distance_from_mysore_palace_km": 7.6
+    },
+    {
+      "id": 62,
+      "location_name": "Dustbin near Hinkal",
+      "city": "Mysuru",
+      "latitude": 12.339558,
+      "longitude": 76.58711,
+      "distance_from_mysore_palace_km": 8.3
+    },
+    {
+      "id": 60,
+      "location_name": "Dustbin near Hinkal",
+      "city": "Mysuru",
+      "latitude": 12.338608,
+      "longitude": 76.585436,
+      "distance_from_mysore_palace_km": 8.4
+    },
+    {
+      "id": 64,
+      "location_name": "Dustbin near Hinkal",
+      "city": "Mysuru",
+      "latitude": 12.338366,
+      "longitude": 76.585091,
+      "distance_from_mysore_palace_km": 8.5
+    },
+    {
+      "id": 61,
+      "location_name": "Dustbin near Hinkal",
+      "city": "Mysuru",
+      "latitude": 12.339897,
+      "longitude": 76.584798,
+      "distance_from_mysore_palace_km": 8.6
+    },
+    {
+      "id": 63,
+      "location_name": "Dustbin near Hinkal",
+      "city": "Mysuru",
+      "latitude": 12.339558,
+      "longitude": 76.583921,
+      "distance_from_mysore_palace_km": 8.6
+    },
+    {
+      "id": 98,
+      "location_name": "Dustbin near Bus Stand",
+      "city": "Srirangapatna",
+      "latitude": 12.418962,
+      "longitude": 76.693298,
+      "distance_from_mysore_palace_km": 13.3
+    },
+    {
+      "id": 99,
+      "location_name": "Dustbin near Bus Stand",
+      "city": "Srirangapatna",
+      "latitude": 12.418967,
+      "longitude": 76.695062,
+      "distance_from_mysore_palace_km": 13.4
+    },
+    {
+      "id": 97,
+      "location_name": "Dustbin near Bus Stand",
+      "city": "Srirangapatna",
+      "latitude": 12.420074,
+      "longitude": 76.694049,
+      "distance_from_mysore_palace_km": 13.5
+    },
+    {
+      "id": 102,
+      "location_name": "Dustbin near Sri Ranganathaswamy Temple",
+      "city": "Srirangapatna",
+      "latitude": 12.42173,
+      "longitude": 76.691129,
+      "distance_from_mysore_palace_km": 13.5
+    },
+    {
+      "id": 105,
+      "location_name": "Dustbin near Garrison Cemetery",
+      "city": "Srirangapatna",
+      "latitude": 12.417903,
+      "longitude": 76.701729,
+      "distance_from_mysore_palace_km": 13.5
+    },
+    {
+      "id": 101,
+      "location_name": "Dustbin near Sri Ranganathaswamy Temple",
+      "city": "Srirangapatna",
+      "latitude": 12.421833,
+      "longitude": 76.691706,
+      "distance_from_mysore_palace_km": 13.6
+    },
+    {
+      "id": 100,
+      "location_name": "Dustbin near Sri Ranganathaswamy Temple",
+      "city": "Srirangapatna",
+      "latitude": 12.422753,
+      "longitude": 76.69259,
+      "distance_from_mysore_palace_km": 13.7
+    },
+    {
+      "id": 103,
+      "location_name": "Dustbin near Sri Ranganathaswamy Temple",
+      "city": "Srirangapatna",
+      "latitude": 12.422163,
+      "longitude": 76.693314,
+      "distance_from_mysore_palace_km": 13.7
+    },
+    {
+      "id": 106,
+      "location_name": "Dustbin near Garrison Cemetery",
+      "city": "Srirangapatna",
+      "latitude": 12.419018,
+      "longitude": 76.702128,
+      "distance_from_mysore_palace_km": 13.7
+    },
+    {
+      "id": 107,
+      "location_name": "Dustbin near Garrison Cemetery",
+      "city": "Srirangapatna",
+      "latitude": 12.420018,
+      "longitude": 76.701256,
+      "distance_from_mysore_palace_km": 13.7
+    },
+    {
+      "id": 108,
+      "location_name": "Dustbin near Garrison Cemetery",
+      "city": "Srirangapatna",
+      "latitude": 12.41954,
+      "longitude": 76.701796,
+      "distance_from_mysore_palace_km": 13.7
+    },
+    {
+      "id": 104,
+      "location_name": "Dustbin near Garrison Cemetery",
+      "city": "Srirangapatna",
+      "latitude": 12.420783,
+      "longitude": 76.701337,
+      "distance_from_mysore_palace_km": 13.8
+    },
+    {
+      "id": 161,
+      "location_name": "Dustbin near Paschimavahini",
+      "city": "Srirangapatna",
+      "latitude": 12.430761,
+      "longitude": 76.671885,
+      "distance_from_mysore_palace_km": 14.1
+    },
+    {
+      "id": 162,
+      "location_name": "Dustbin near Paschimavahini",
+      "city": "Srirangapatna",
+      "latitude": 12.430387,
+      "longitude": 76.673909,
+      "distance_from_mysore_palace_km": 14.1
+    },
+    {
+      "id": 163,
+      "location_name": "Dustbin near Paschimavahini",
+      "city": "Srirangapatna",
+      "latitude": 12.430908,
+      "longitude": 76.673346,
+      "distance_from_mysore_palace_km": 14.1
+    },
+    {
+      "id": 164,
+      "location_name": "Dustbin near Paschimavahini",
+      "city": "Srirangapatna",
+      "latitude": 12.431622,
+      "longitude": 76.672063,
+      "distance_from_mysore_palace_km": 14.2
+    },
+    {
+      "id": 121,
+      "location_name": "Dustbin near Town Center",
+      "city": "KR Nagar",
+      "latitude": 12.434287,
+      "longitude": 76.569822,
+      "distance_from_mysore_palace_km": 17.1
+    },
+    {
+      "id": 122,
+      "location_name": "Dustbin near Town Center",
+      "city": "KR Nagar",
+      "latitude": 12.433683,
+      "longitude": 76.569244,
+      "distance_from_mysore_palace_km": 17.1
+    },
+    {
+      "id": 123,
+      "location_name": "Dustbin near Town Center",
+      "city": "KR Nagar",
+      "latitude": 12.43436,
+      "longitude": 76.570711,
+      "distance_from_mysore_palace_km": 17.1
+    },
+    {
+      "id": 124,
+      "location_name": "Dustbin near Town Center",
+      "city": "KR Nagar",
+      "latitude": 12.433665,
+      "longitude": 76.569519,
+      "distance_from_mysore_palace_km": 17.1
+    },
+    {
+      "id": 120,
+      "location_name": "Dustbin near Town Center",
+      "city": "KR Nagar",
+      "latitude": 12.435294,
+      "longitude": 76.568946,
+      "distance_from_mysore_palace_km": 17.2
+    },
+    {
+      "id": 111,
+      "location_name": "Dustbin near Railway Station",
+      "city": "Nanjangud",
+      "latitude": 12.121359,
+      "longitude": 76.674468,
+      "distance_from_mysore_palace_km": 20.5
+    },
+    {
+      "id": 112,
+      "location_name": "Dustbin near Railway Station",
+      "city": "Nanjangud",
+      "latitude": 12.121695,
+      "longitude": 76.673786,
+      "distance_from_mysore_palace_km": 20.5
+    },
+    {
+      "id": 113,
+      "location_name": "Dustbin near Railway Station",
+      "city": "Nanjangud",
+      "latitude": 12.121324,
+      "longitude": 76.67387,
+      "distance_from_mysore_palace_km": 20.5
+    },
+    {
+      "id": 109,
+      "location_name": "Dustbin near Temple Area",
+      "city": "Nanjangud",
+      "latitude": 12.118682,
+      "longitude": 76.681387,
+      "distance_from_mysore_palace_km": 20.9
+    },
+    {
+      "id": 110,
+      "location_name": "Dustbin near Temple Area",
+      "city": "Nanjangud",
+      "latitude": 12.116519,
+      "longitude": 76.681163,
+      "distance_from_mysore_palace_km": 21.2
+    },
+    {
+      "id": 154,
+      "location_name": "Dustbin near Town Center",
+      "city": "Pandavapura",
+      "latitude": 12.499421,
+      "longitude": 76.673395,
+      "distance_from_mysore_palace_km": 21.7
+    },
+    {
+      "id": 156,
+      "location_name": "Dustbin near Town Center",
+      "city": "Pandavapura",
+      "latitude": 12.499092,
+      "longitude": 76.673432,
+      "distance_from_mysore_palace_km": 21.7
+    },
+    {
+      "id": 157,
+      "location_name": "Dustbin near Town Center",
+      "city": "Pandavapura",
+      "latitude": 12.500628,
+      "longitude": 76.672729,
+      "distance_from_mysore_palace_km": 21.8
+    },
+    {
+      "id": 155,
+      "location_name": "Dustbin near Town Center",
+      "city": "Pandavapura",
+      "latitude": 12.500945,
+      "longitude": 76.674428,
+      "distance_from_mysore_palace_km": 21.9
+    },
+    {
+      "id": 132,
+      "location_name": "Dustbin near Town Center",
+      "city": "Bannur",
+      "latitude": 12.28987,
+      "longitude": 76.861107,
+      "distance_from_mysore_palace_km": 22.4
+    },
+    {
+      "id": 133,
+      "location_name": "Dustbin near Town Center",
+      "city": "Bannur",
+      "latitude": 12.289649,
+      "longitude": 76.860583,
+      "distance_from_mysore_palace_km": 22.4
+    },
+    {
+      "id": 134,
+      "location_name": "Dustbin near Town Center",
+      "city": "Bannur",
+      "latitude": 12.289575,
+      "longitude": 76.860584,
+      "distance_from_mysore_palace_km": 22.4
+    },
+    {
+      "id": 131,
+      "location_name": "Dustbin near Town Center",
+      "city": "Bannur",
+      "latitude": 12.291227,
+      "longitude": 76.862396,
+      "distance_from_mysore_palace_km": 22.6
+    },
+    {
+      "id": 128,
+      "location_name": "Dustbin near Town Center",
+      "city": "T. Narasipura",
+      "latitude": 12.212166,
+      "longitude": 76.901764,
+      "distance_from_mysore_palace_km": 28.7
+    },
+    {
+      "id": 130,
+      "location_name": "Dustbin near Town Center",
+      "city": "T. Narasipura",
+      "latitude": 12.210847,
+      "longitude": 76.900901,
+      "distance_from_mysore_palace_km": 28.7
+    },
+    {
+      "id": 126,
+      "location_name": "Dustbin near Town Center",
+      "city": "T. Narasipura",
+      "latitude": 12.210937,
+      "longitude": 76.902506,
+      "distance_from_mysore_palace_km": 28.8
+    },
+    {
+      "id": 129,
+      "location_name": "Dustbin near Town Center",
+      "city": "T. Narasipura",
+      "latitude": 12.210815,
+      "longitude": 76.902394,
+      "distance_from_mysore_palace_km": 28.8
+    },
+    {
+      "id": 125,
+      "location_name": "Dustbin near Town Center",
+      "city": "T. Narasipura",
+      "latitude": 12.209642,
+      "longitude": 76.902848,
+      "distance_from_mysore_palace_km": 28.9
+    },
+    {
+      "id": 127,
+      "location_name": "Dustbin near Town Center",
+      "city": "T. Narasipura",
+      "latitude": 12.211331,
+      "longitude": 76.903709,
+      "distance_from_mysore_palace_km": 28.9
+    },
+    {
+      "id": 144,
+      "location_name": "Dustbin near PES College",
+      "city": "Mandya",
+      "latitude": 12.522719,
+      "longitude": 76.888348,
+      "distance_from_mysore_palace_km": 35.0
+    },
+    {
+      "id": 145,
+      "location_name": "Dustbin near PES College",
+      "city": "Mandya",
+      "latitude": 12.522439,
+      "longitude": 76.887826,
+      "distance_from_mysore_palace_km": 35.0
+    },
+    {
+      "id": 146,
+      "location_name": "Dustbin near PES College",
+      "city": "Mandya",
+      "latitude": 12.523339,
+      "longitude": 76.887848,
+      "distance_from_mysore_palace_km": 35.0
+    },
+    {
+      "id": 148,
+      "location_name": "Dustbin near PES College",
+      "city": "Mandya",
+      "latitude": 12.523714,
+      "longitude": 76.887401,
+      "distance_from_mysore_palace_km": 35.0
+    },
+    {
+      "id": 149,
+      "location_name": "Dustbin near PES College",
+      "city": "Mandya",
+      "latitude": 12.524263,
+      "longitude": 76.888271,
+      "distance_from_mysore_palace_km": 35.1
+    },
+    {
+      "id": 147,
+      "location_name": "Dustbin near PES College",
+      "city": "Mandya",
+      "latitude": 12.524215,
+      "longitude": 76.888738,
+      "distance_from_mysore_palace_km": 35.2
+    },
+    {
+      "id": 153,
+      "location_name": "Dustbin near Silver Jubilee Park",
+      "city": "Mandya",
+      "latitude": 12.521669,
+      "longitude": 76.892934,
+      "distance_from_mysore_palace_km": 35.3
+    },
+    {
+      "id": 151,
+      "location_name": "Dustbin near Silver Jubilee Park",
+      "city": "Mandya",
+      "latitude": 12.523474,
+      "longitude": 76.89239,
+      "distance_from_mysore_palace_km": 35.4
+    },
+    {
+      "id": 152,
+      "location_name": "Dustbin near Silver Jubilee Park",
+      "city": "Mandya",
+      "latitude": 12.52332,
+      "longitude": 76.892255,
+      "distance_from_mysore_palace_km": 35.4
+    },
+    {
+      "id": 138,
+      "location_name": "Dustbin near KSRTC Bus Stand",
+      "city": "Mandya",
+      "latitude": 12.521439,
+      "longitude": 76.896593,
+      "distance_from_mysore_palace_km": 35.6
+    },
+    {
+      "id": 141,
+      "location_name": "Dustbin near KSRTC Bus Stand",
+      "city": "Mandya",
+      "latitude": 12.520623,
+      "longitude": 76.897058,
+      "distance_from_mysore_palace_km": 35.6
+    },
+    {
+      "id": 143,
+      "location_name": "Dustbin near KSRTC Bus Stand",
+      "city": "Mandya",
+      "latitude": 12.520086,
+      "longitude": 76.898374,
+      "distance_from_mysore_palace_km": 35.6
+    },
+    {
+      "id": 150,
+      "location_name": "Dustbin near Silver Jubilee Park",
+      "city": "Mandya",
+      "latitude": 12.523489,
+      "longitude": 76.895046,
+      "distance_from_mysore_palace_km": 35.6
+    },
+    {
+      "id": 139,
+      "location_name": "Dustbin near KSRTC Bus Stand",
+      "city": "Mandya",
+      "latitude": 12.522446,
+      "longitude": 76.897208,
+      "distance_from_mysore_palace_km": 35.7
+    },
+    {
+      "id": 142,
+      "location_name": "Dustbin near KSRTC Bus Stand",
+      "city": "Mandya",
+      "latitude": 12.521061,
+      "longitude": 76.898294,
+      "distance_from_mysore_palace_km": 35.7
+    },
+    {
+      "id": 140,
+      "location_name": "Dustbin near KSRTC Bus Stand",
+      "city": "Mandya",
+      "latitude": 12.521697,
+      "longitude": 76.898558,
+      "distance_from_mysore_palace_km": 35.8
+    },
+    {
+      "id": 115,
+      "location_name": "Dustbin near Town Center",
+      "city": "Hunsur",
+      "latitude": 12.304858,
+      "longitude": 76.287902,
+      "distance_from_mysore_palace_km": 39.9
+    },
+    {
+      "id": 114,
+      "location_name": "Dustbin near Town Center",
+      "city": "Hunsur",
+      "latitude": 12.30657,
+      "longitude": 76.286823,
+      "distance_from_mysore_palace_km": 40.0
+    },
+    {
+      "id": 116,
+      "location_name": "Dustbin near Town Center",
+      "city": "Hunsur",
+      "latitude": 12.304588,
+      "longitude": 76.286724,
+      "distance_from_mysore_palace_km": 40.0
+    },
+    {
+      "id": 119,
+      "location_name": "Dustbin near Town Center",
+      "city": "Hunsur",
+      "latitude": 12.305366,
+      "longitude": 76.28672,
+      "distance_from_mysore_palace_km": 40.0
+    },
+    {
+      "id": 117,
+      "location_name": "Dustbin near Town Center",
+      "city": "Hunsur",
+      "latitude": 12.306523,
+      "longitude": 76.286014,
+      "distance_from_mysore_palace_km": 40.1
+    },
+    {
+      "id": 118,
+      "location_name": "Dustbin near Town Center",
+      "city": "Hunsur",
+      "latitude": 12.304847,
+      "longitude": 76.286362,
+      "distance_from_mysore_palace_km": 40.1
+    },
+    {
+      "id": 167,
+      "location_name": "Dustbin near Town Center",
+      "city": "Malavalli",
+      "latitude": 12.385834,
+      "longitude": 77.042714,
+      "distance_from_mysore_palace_km": 43.0
+    },
+    {
+      "id": 169,
+      "location_name": "Dustbin near Town Center",
+      "city": "Malavalli",
+      "latitude": 12.38452,
+      "longitude": 77.042994,
+      "distance_from_mysore_palace_km": 43.0
+    },
+    {
+      "id": 170,
+      "location_name": "Dustbin near Town Center",
+      "city": "Malavalli",
+      "latitude": 12.38424,
+      "longitude": 77.042729,
+      "distance_from_mysore_palace_km": 43.0
+    },
+    {
+      "id": 165,
+      "location_name": "Dustbin near Town Center",
+      "city": "Malavalli",
+      "latitude": 12.384108,
+      "longitude": 77.043923,
+      "distance_from_mysore_palace_km": 43.1
+    },
+    {
+      "id": 166,
+      "location_name": "Dustbin near Town Center",
+      "city": "Malavalli",
+      "latitude": 12.384804,
+      "longitude": 77.043394,
+      "distance_from_mysore_palace_km": 43.1
+    },
+    {
+      "id": 168,
+      "location_name": "Dustbin near Town Center",
+      "city": "Malavalli",
+      "latitude": 12.384241,
+      "longitude": 77.043211,
+      "distance_from_mysore_palace_km": 43.1
+    },
+    {
+      "id": 158,
+      "location_name": "Dustbin near Town Center",
+      "city": "Maddur",
+      "latitude": 12.585014,
+      "longitude": 77.04203,
+      "distance_from_mysore_palace_km": 52.3
+    },
+    {
+      "id": 159,
+      "location_name": "Dustbin near Town Center",
+      "city": "Maddur",
+      "latitude": 12.586016,
+      "longitude": 77.043406,
+      "distance_from_mysore_palace_km": 52.5
+    },
+    {
+      "id": 160,
+      "location_name": "Dustbin near Town Center",
+      "city": "Maddur",
+      "latitude": 12.585326,
+      "longitude": 77.043985,
+      "distance_from_mysore_palace_km": 52.5
+    },
+    {
+      "id": 135,
+      "location_name": "Dustbin near Town Center",
+      "city": "Periyapatna",
+      "latitude": 12.339899,
+      "longitude": 76.103103,
+      "distance_from_mysore_palace_km": 60.1
+    },
+    {
+      "id": 136,
+      "location_name": "Dustbin near Town Center",
+      "city": "Periyapatna",
+      "latitude": 12.338773,
+      "longitude": 76.102688,
+      "distance_from_mysore_palace_km": 60.1
+    },
+    {
+      "id": 137,
+      "location_name": "Dustbin near Town Center",
+      "city": "Periyapatna",
+      "latitude": 12.340373,
+      "longitude": 76.101032,
+      "distance_from_mysore_palace_km": 60.3
+    },
+    {
+      "id": 177,
+      "location_name": "Dustbin near Kengeri",
+      "city": "Bengaluru",
+      "latitude": 12.916931,
+      "longitude": 77.486081,
+      "distance_from_mysore_palace_km": 112.9
+    },
+    {
+      "id": 179,
+      "location_name": "Dustbin near Kengeri",
+      "city": "Bengaluru",
+      "latitude": 12.916587,
+      "longitude": 77.485857,
+      "distance_from_mysore_palace_km": 112.9
+    },
+    {
+      "id": 175,
+      "location_name": "Dustbin near Kengeri",
+      "city": "Bengaluru",
+      "latitude": 12.917863,
+      "longitude": 77.48633,
+      "distance_from_mysore_palace_km": 113.0
+    },
+    {
+      "id": 176,
+      "location_name": "Dustbin near Kengeri",
+      "city": "Bengaluru",
+      "latitude": 12.917527,
+      "longitude": 77.486977,
+      "distance_from_mysore_palace_km": 113.1
+    },
+    {
+      "id": 178,
+      "location_name": "Dustbin near Kengeri",
+      "city": "Bengaluru",
+      "latitude": 12.917217,
+      "longitude": 77.48711,
+      "distance_from_mysore_palace_km": 113.1
+    },
+    {
+      "id": 181,
+      "location_name": "Dustbin near NICE Road - PESU",
+      "city": "Bengaluru",
+      "latitude": 12.906722,
+      "longitude": 77.53445,
+      "distance_from_mysore_palace_km": 116.5
+    },
+    {
+      "id": 180,
+      "location_name": "Dustbin near NICE Road - PESU",
+      "city": "Bengaluru",
+      "latitude": 12.907111,
+      "longitude": 77.535515,
+      "distance_from_mysore_palace_km": 116.6
+    },
+    {
+      "id": 182,
+      "location_name": "Dustbin near NICE Road - PESU",
+      "city": "Bengaluru",
+      "latitude": 12.908484,
+      "longitude": 77.534108,
+      "distance_from_mysore_palace_km": 116.6
+    },
+    {
+      "id": 183,
+      "location_name": "Dustbin near Jayanagar 4th Block",
+      "city": "Bengaluru",
+      "latitude": 12.930448,
+      "longitude": 77.582388,
+      "distance_from_mysore_palace_km": 122.3
+    },
+    {
+      "id": 184,
+      "location_name": "Dustbin near Jayanagar 4th Block",
+      "city": "Bengaluru",
+      "latitude": 12.929663,
+      "longitude": 77.583142,
+      "distance_from_mysore_palace_km": 122.3
+    },
+    {
+      "id": 185,
+      "location_name": "Dustbin near Jayanagar 4th Block",
+      "city": "Bengaluru",
+      "latitude": 12.92902,
+      "longitude": 77.58306,
+      "distance_from_mysore_palace_km": 122.3
+    },
+    {
+      "id": 186,
+      "location_name": "Dustbin near Jayanagar 4th Block",
+      "city": "Bengaluru",
+      "latitude": 12.931819,
+      "longitude": 77.58441,
+      "distance_from_mysore_palace_km": 122.6
+    },
+    {
+      "id": 171,
+      "location_name": "Dustbin near Majestic (Kempegowda Bus Station)",
+      "city": "Bengaluru",
+      "latitude": 12.977858,
+      "longitude": 77.57293,
+      "distance_from_mysore_palace_km": 124.5
+    },
+    {
+      "id": 173,
+      "location_name": "Dustbin near Majestic (Kempegowda Bus Station)",
+      "city": "Bengaluru",
+      "latitude": 12.97807,
+      "longitude": 77.572168,
+      "distance_from_mysore_palace_km": 124.5
+    },
+    {
+      "id": 174,
+      "location_name": "Dustbin near Majestic (Kempegowda Bus Station)",
+      "city": "Bengaluru",
+      "latitude": 12.977262,
+      "longitude": 77.572648,
+      "distance_from_mysore_palace_km": 124.5
+    },
+    {
+      "id": 189,
+      "location_name": "Dustbin near Electronic City",
+      "city": "Bengaluru",
+      "latitude": 12.844903,
+      "longitude": 77.661807,
+      "distance_from_mysore_palace_km": 124.6
+    },
+    {
+      "id": 172,
+      "location_name": "Dustbin near Majestic (Kempegowda Bus Station)",
+      "city": "Bengaluru",
+      "latitude": 12.97852,
+      "longitude": 77.573665,
+      "distance_from_mysore_palace_km": 124.7
+    },
+    {
+      "id": 187,
+      "location_name": "Dustbin near Electronic City",
+      "city": "Bengaluru",
+      "latitude": 12.844509,
+      "longitude": 77.662241,
+      "distance_from_mysore_palace_km": 124.7
+    },
+    {
+      "id": 190,
+      "location_name": "Dustbin near Electronic City",
+      "city": "Bengaluru",
+      "latitude": 12.843882,
+      "longitude": 77.663094,
+      "distance_from_mysore_palace_km": 124.7
+    },
+    {
+      "id": 191,
+      "location_name": "Dustbin near Electronic City",
+      "city": "Bengaluru",
+      "latitude": 12.842196,
+      "longitude": 77.663492,
+      "distance_from_mysore_palace_km": 124.7
+    },
+    {
+      "id": 188,
+      "location_name": "Dustbin near Electronic City",
+      "city": "Bengaluru",
+      "latitude": 12.843816,
+      "longitude": 77.663811,
+      "distance_from_mysore_palace_km": 124.8
+    }
+  ]
+}

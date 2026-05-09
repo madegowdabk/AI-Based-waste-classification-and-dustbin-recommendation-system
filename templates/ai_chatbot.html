@@ -1,0 +1,734 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EcoBot - Waste Management Assistant</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #1a2f1a, #2d5a2d, #3a7c3a);
+            color: #fff;
+            min-height: 100vh;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        .background-animation {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            overflow: hidden;
+        }
+
+        .bubble {
+            position: absolute;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.1);
+            animation: float 15s infinite ease-in-out;
+        }
+
+        .leaf {
+            position: absolute;
+            font-size: 24px;
+            color: rgba(139, 195, 74, 0.5);
+            animation: fall 20s infinite linear;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(180deg); }
+        }
+
+        @keyframes fall {
+            0% { transform: translateY(-100px) rotate(0deg); }
+            100% { transform: translateY(100vh) rotate(360deg); }
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            height: 100vh;
+        }
+
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
+            animation: fadeIn 1s ease;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+
+        .logo i {
+            font-size: 2.5rem;
+            margin-right: 10px;
+            color: #8bc34a;
+        }
+
+        .logo h1 {
+            font-size: 2rem;
+            background: linear-gradient(to right, #8bc34a, #4caf50, #2e7d32);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .back-btn {
+            padding: 10px 20px;
+            background: rgba(255, 255, 255, 0.15);
+            border: none;
+            border-radius: 50px;
+            color: white;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 600;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .back-btn:hover {
+            background: rgba(255, 255, 255, 0.25);
+            transform: translateY(-2px);
+        }
+
+        .chat-container {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
+            margin: 20px 0;
+        }
+
+        .chat-header {
+            padding: 20px;
+            background: rgba(0, 0, 0, 0.2);
+            text-align: center;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .chat-header h2 {
+            font-size: 1.8rem;
+            margin-bottom: 5px;
+        }
+
+        .chat-header p {
+            opacity: 0.8;
+        }
+
+        .chat-messages {
+            flex: 1;
+            padding: 20px;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .message {
+            max-width: 80%;
+            padding: 15px 20px;
+            border-radius: 20px;
+            line-height: 1.5;
+            animation: fadeIn 0.5s ease;
+        }
+
+        .user-message {
+            align-self: flex-end;
+            background: linear-gradient(to right, #4caf50, #2e7d32);
+            border-bottom-right-radius: 5px;
+        }
+
+        .bot-message {
+            align-self: flex-start;
+            background: rgba(255, 255, 255, 0.15);
+            border-bottom-left-radius: 5px;
+        }
+
+        .message-image {
+            max-width: 100%;
+            border-radius: 10px;
+            margin-top: 10px;
+        }
+
+        .chat-input-container {
+            padding: 20px;
+            background: rgba(0, 0, 0, 0.2);
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .input-group {
+            display: flex;
+            gap: 10px;
+        }
+
+        .input-group input {
+            flex: 1;
+            padding: 15px 20px;
+            border: none;
+            border-radius: 50px;
+            background: rgba(255, 255, 255, 0.15);
+            color: white;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .input-group input:focus {
+            outline: none;
+            background: rgba(255, 255, 255, 0.25);
+            box-shadow: 0 0 0 2px #8bc34a;
+        }
+
+        .input-group input::placeholder {
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        .btn {
+            padding: 15px 20px;
+            border: none;
+            border-radius: 50px;
+            background: linear-gradient(to right, #4caf50, #2e7d32);
+            color: white;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .btn:active {
+            transform: translateY(-1px);
+        }
+
+        .btn-small {
+            padding: 10px 15px;
+            font-size: 0.9rem;
+        }
+
+        .btn-disabled {
+            background: rgba(255, 255, 255, 0.15);
+            cursor: not-allowed;
+        }
+
+        .btn-disabled:hover {
+            transform: none;
+            box-shadow: none;
+        }
+
+        .input-options {
+            display: flex;
+            gap: 10px;
+            margin-top: 15px;
+            flex-wrap: wrap;
+        }
+
+        .suggestion-chips {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 15px;
+            flex-wrap: wrap;
+        }
+
+        .chip {
+            padding: 8px 15px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 0.9rem;
+        }
+
+        .chip:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: translateY(-2px);
+        }
+
+        .typing-indicator {
+            display: inline-block;
+            padding: 15px 20px;
+            background: rgba(255, 255, 255, 0.15);
+            border-radius: 20px;
+            border-bottom-left-radius: 5px;
+            align-self: flex-start;
+        }
+
+        .typing-dots {
+            display: flex;
+            gap: 5px;
+        }
+
+        .typing-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.7);
+            animation: typing 1.4s infinite ease-in-out;
+        }
+
+        .typing-dot:nth-child(1) { animation-delay: -0.32s; }
+        .typing-dot:nth-child(2) { animation-delay: -0.16s; }
+
+        @keyframes typing {
+            0%, 80%, 100% { transform: scale(0.8); opacity: 0.5; }
+            40% { transform: scale(1); opacity: 1; }
+        }
+
+        .voice-indicator {
+            display: none;
+            text-align: center;
+            padding: 10px;
+            margin-top: 10px;
+            background: rgba(76, 175, 80, 0.3);
+            border-radius: 10px;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% { background: rgba(76, 175, 80, 0.3); }
+            50% { background: rgba(76, 175, 80, 0.6); }
+            100% { background: rgba(76, 175, 80, 0.3); }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @media (max-width: 768px) {
+            .message {
+                max-width: 90%;
+            }
+            
+            .input-group {
+                flex-direction: column;
+            }
+            
+            .btn {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="background-animation" id="backgroundAnimation"></div>
+    
+    <div class="container">
+        <header>
+            <div class="logo">
+                <i class="fas fa-robot"></i>
+                <h1>Binify ECO Route Bot</h1>
+            </div>
+            <a href="home.html" class="back-btn">
+                <i class="fas fa-arrow-left"></i> Back to Home
+            </a>
+        </header>
+        
+        <div class="chat-container">
+            <div class="chat-header">
+                <h2>Waste Management Assistant</h2>
+                <p>Ask me anything about recycling, composting, waste reduction, and more!</p>
+            </div>
+            
+            <div class="chat-messages" id="chatMessages">
+                <div class="message bot-message">
+                    Hello! I'm Binify ECO Route Bot, your waste management assistant. I can help you with recycling information, composting tips, waste reduction strategies, and more. How can I assist you today?
+                </div>
+                
+                <div class="suggestion-chips">
+                    <div class="chip" data-prompt="How do I recycle plastic bottles?">How do I recycle plastic bottles?</div>
+                    <div class="chip" data-prompt="What can I compost?">What can I compost?</div>
+                    <div class="chip" data-prompt="How to reduce food waste?">How to reduce food waste?</div>
+                    <div class="chip" data-prompt="Tell me about e-waste disposal">Tell me about e-waste disposal</div>
+                </div>
+            </div>
+            
+            <div class="voice-indicator" id="voiceIndicator">
+                <i class="fas fa-microphone"></i> Listening... Speak now
+            </div>
+            
+            <div class="chat-input-container">
+                <div class="input-group">
+                    <input type="text" id="messageInput" placeholder="Type your question about waste management...">
+                    <button class="btn" id="sendButton">
+                        <i class="fas fa-paper-plane"></i> Send
+                    </button>
+                </div>
+                
+                <div class="input-options">
+                    <button class="btn btn-small" id="voiceButton">
+                        <i class="fas fa-microphone"></i> Voice Input
+                    </button>
+                    <button class="btn btn-small" id="readButton">
+                        <i class="fas fa-volume-up"></i> Read Response
+                    </button>
+                    <button class="btn btn-small btn-disabled" id="pauseButton" disabled>
+                        <i class="fas fa-pause"></i> Pause
+                    </button>
+                    <button class="btn btn-small btn-disabled" id="stopButton" disabled>
+                        <i class="fas fa-stop"></i> Stop
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // DOM Elements
+        const chatMessages = document.getElementById('chatMessages');
+        const messageInput = document.getElementById('messageInput');
+        const sendButton = document.getElementById('sendButton');
+        const voiceButton = document.getElementById('voiceButton');
+        const readButton = document.getElementById('readButton');
+        const pauseButton = document.getElementById('pauseButton');
+        const stopButton = document.getElementById('stopButton');
+        const voiceIndicator = document.getElementById('voiceIndicator');
+        const suggestionChips = document.querySelectorAll('.chip');
+
+        // Gemini API configuration - Using Gemini 2.0 Flash with your API key
+        const API_KEY = 'AIzaSyCNqt9MYDTLGrujC6xTzqQHnCLnwaCcssk';
+        const API_URL = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${API_KEY}`;
+
+        // Speech synthesis variables
+        let currentUtterance = null;
+        let isSpeaking = false;
+        let isPaused = false;
+
+        // Check if browser supports speech recognition
+        const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+        let recognition;
+        if (SpeechRecognition) {
+            recognition = new SpeechRecognition();
+            recognition.continuous = false;
+            recognition.interimResults = false;
+            recognition.lang = 'en-US';
+            
+            recognition.onstart = function() {
+                voiceIndicator.style.display = 'block';
+                voiceButton.innerHTML = '<i class="fas fa-stop"></i> Stop';
+            };
+            
+            recognition.onresult = function(event) {
+                const transcript = event.results[0][0].transcript;
+                messageInput.value = transcript;
+                voiceIndicator.style.display = 'none';
+                voiceButton.innerHTML = '<i class="fas fa-microphone"></i> Voice Input';
+            };
+            
+            recognition.onerror = function(event) {
+                console.error('Speech recognition error', event.error);
+                voiceIndicator.style.display = 'none';
+                voiceButton.innerHTML = '<i class="fas fa-microphone"></i> Voice Input';
+                addMessage('Sorry, I encountered an error with voice recognition. Please try again.', 'bot');
+            };
+            
+            recognition.onend = function() {
+                voiceIndicator.style.display = 'none';
+                voiceButton.innerHTML = '<i class="fas fa-microphone"></i> Voice Input';
+            };
+        } else {
+            voiceButton.disabled = true;
+            voiceButton.innerHTML = '<i class="fas fa-microphone-slash"></i> Voice Not Supported';
+        }
+
+        // Event Listeners
+        sendButton.addEventListener('click', sendMessage);
+        messageInput.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') sendMessage();
+        });
+        
+        voiceButton.addEventListener('click', toggleVoiceInput);
+        readButton.addEventListener('click', toggleSpeech);
+        pauseButton.addEventListener('click', pauseSpeech);
+        stopButton.addEventListener('click', stopSpeech);
+        
+        suggestionChips.forEach(chip => {
+            chip.addEventListener('click', () => {
+                messageInput.value = chip.getAttribute('data-prompt');
+                sendMessage();
+            });
+        });
+
+        // Functions
+        function sendMessage() {
+            const message = messageInput.value.trim();
+            if (!message) return;
+            
+            addMessage(message, 'user');
+            messageInput.value = '';
+            
+            // Show typing indicator
+            const typingIndicator = document.createElement('div');
+            typingIndicator.className = 'typing-indicator';
+            typingIndicator.innerHTML = `
+                <div class="typing-dots">
+                    <div class="typing-dot"></div>
+                    <div class="typing-dot"></div>
+                    <div class="typing-dot"></div>
+                </div>
+            `;
+            chatMessages.appendChild(typingIndicator);
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+            
+            // Send message to Gemini API
+            fetchGeminiResponse(message)
+                .then(response => {
+                    // Remove typing indicator
+                    chatMessages.removeChild(typingIndicator);
+                    
+                    // Add bot response
+                    addMessage(response, 'bot');
+                })
+                .catch(error => {
+                    // Remove typing indicator
+                    chatMessages.removeChild(typingIndicator);
+                    
+                    // Add error message
+                    console.error('API Error:', error);
+                    addMessage('Sorry, I encountered an error. Please try again. Error: ' + error.message, 'bot');
+                });
+        }
+
+        function addMessage(text, sender) {
+            const messageElement = document.createElement('div');
+            messageElement.className = `message ${sender}-message`;
+            messageElement.textContent = text;
+            
+            chatMessages.appendChild(messageElement);
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+        }
+
+        async function fetchGeminiResponse(prompt) {
+            // Create a prompt that encourages concise responses
+            const fullPrompt = `You are EcoBot, a waste management assistant. Provide helpful, accurate information about recycling, composting, waste reduction, and environmental sustainability. Keep your responses concise and in paragraph format (2-3 paragraphs maximum). Focus on practical advice. Here's the user's question: ${prompt}`;
+            
+            // Correct request body for Gemini API
+            const requestBody = {
+                contents: [{
+                    parts: [{
+                        text: fullPrompt
+                    }]
+                }],
+                generationConfig: {
+                    temperature: 0.7,
+                    topK: 40,
+                    topP: 0.95,
+                    maxOutputTokens: 1024,
+                },
+                safetySettings: [
+                    {
+                        category: "HARM_CATEGORY_HARASSMENT",
+                        threshold: "BLOCK_MEDIUM_AND_ABOVE"
+                    },
+                    {
+                        category: "HARM_CATEGORY_HATE_SPEECH",
+                        threshold: "BLOCK_MEDIUM_AND_ABOVE"
+                    },
+                    {
+                        category: "HARM_CATEGORY_SEXUALLY_EXPLICIT",
+                        threshold: "BLOCK_MEDIUM_AND_ABOVE"
+                    },
+                    {
+                        category: "HARM_CATEGORY_DANGEROUS_CONTENT",
+                        threshold: "BLOCK_MEDIUM_AND_ABOVE"
+                    }
+                ]
+            };
+            
+            try {
+                const response = await fetch(API_URL, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(requestBody)
+                });
+                
+                if (!response.ok) {
+                    const errorText = await response.text();
+                    throw new Error(`API request failed with status ${response.status}: ${errorText}`);
+                }
+                
+                const data = await response.json();
+                
+                if (data.candidates && data.candidates[0] && data.candidates[0].content) {
+                    return data.candidates[0].content.parts[0].text;
+                } else if (data.promptFeedback && data.promptFeedback.blockReason) {
+                    throw new Error(`Response blocked: ${data.promptFeedback.blockReason}`);
+                } else {
+                    console.error('Unexpected API response format:', data);
+                    throw new Error('Invalid response format from API');
+                }
+            } catch (error) {
+                console.error('Fetch error:', error);
+                throw error;
+            }
+        }
+
+        function toggleVoiceInput() {
+            if (!recognition) return;
+            
+            if (voiceButton.innerHTML.includes('Stop')) {
+                recognition.stop();
+            } else {
+                recognition.start();
+            }
+        }
+
+        function toggleSpeech() {
+            if (!isSpeaking) {
+                // Start speaking
+                const botMessages = document.querySelectorAll('.bot-message');
+                if (botMessages.length === 0) return;
+                
+                const lastMessage = botMessages[botMessages.length - 1].textContent;
+                
+                if ('speechSynthesis' in window) {
+                    // Stop any current speech
+                    window.speechSynthesis.cancel();
+                    
+                    // Create new utterance
+                    currentUtterance = new SpeechSynthesisUtterance(lastMessage);
+                    currentUtterance.rate = 0.9;
+                    currentUtterance.pitch = 1;
+                    
+                    // Set up event handlers
+                    currentUtterance.onstart = function() {
+                        isSpeaking = true;
+                        updateSpeechButtons();
+                    };
+                    
+                    currentUtterance.onend = function() {
+                        isSpeaking = false;
+                        isPaused = false;
+                        updateSpeechButtons();
+                    };
+                    
+                    currentUtterance.onerror = function() {
+                        isSpeaking = false;
+                        isPaused = false;
+                        updateSpeechButtons();
+                    };
+                    
+                    // Start speaking
+                    window.speechSynthesis.speak(currentUtterance);
+                } else {
+                    addMessage('Text-to-speech is not supported in your browser.', 'bot');
+                }
+            } else {
+                // Pause or resume speaking
+                if (isPaused) {
+                    window.speechSynthesis.resume();
+                    isPaused = false;
+                } else {
+                    window.speechSynthesis.pause();
+                    isPaused = true;
+                }
+                updateSpeechButtons();
+            }
+        }
+
+        function pauseSpeech() {
+            if (isSpeaking && !isPaused) {
+                window.speechSynthesis.pause();
+                isPaused = true;
+                updateSpeechButtons();
+            }
+        }
+
+        function stopSpeech() {
+            if (isSpeaking) {
+                window.speechSynthesis.cancel();
+                isSpeaking = false;
+                isPaused = false;
+                updateSpeechButtons();
+            }
+        }
+
+        function updateSpeechButtons() {
+            // Update read button
+            if (!isSpeaking) {
+                readButton.innerHTML = '<i class="fas fa-volume-up"></i> Read Response';
+                readButton.classList.remove('btn-disabled');
+            } else if (isPaused) {
+                readButton.innerHTML = '<i class="fas fa-play"></i> Resume';
+                readButton.classList.remove('btn-disabled');
+            } else {
+                readButton.innerHTML = '<i class="fas fa-pause"></i> Pause';
+                readButton.classList.remove('btn-disabled');
+            }
+            
+            // Update pause button
+            if (isSpeaking && !isPaused) {
+                pauseButton.classList.remove('btn-disabled');
+                pauseButton.disabled = false;
+            } else {
+                pauseButton.classList.add('btn-disabled');
+                pauseButton.disabled = true;
+            }
+            
+            // Update stop button
+            if (isSpeaking) {
+                stopButton.classList.remove('btn-disabled');
+                stopButton.disabled = false;
+            } else {
+                stopButton.classList.add('btn-disabled');
+                stopButton.disabled = true;
+            }
+        }
+
+        // Background animation
+        const backgroundAnimation = document.getElementById('backgroundAnimation');
+        
+        // Create bubbles
+        for (let i = 0; i < 15; i++) {
+            const bubble = document.createElement('div');
+            bubble.classList.add('bubble');
+            const size = Math.random() * 60 + 20;
+            bubble.style.width = `${size}px`;
+            bubble.style.height = `${size}px`;
+            bubble.style.left = `${Math.random() * 100}%`;
+            bubble.style.top = `${Math.random() * 100}%`;
+            bubble.style.animationDelay = `${Math.random() * 15}s`;
+            backgroundAnimation.appendChild(bubble);
+        }
+        
+        // Create leaves
+        for (let i = 0; i < 10; i++) {
+            const leaf = document.createElement('div');
+            leaf.classList.add('leaf');
+            leaf.innerHTML = '<i class="fas fa-leaf"></i>';
+            leaf.style.left = `${Math.random() * 100}%`;
+            leaf.style.animationDelay = `${Math.random() * 20}s`;
+            backgroundAnimation.appendChild(leaf);
+        }
+    </script>
+</body>
+</html>
